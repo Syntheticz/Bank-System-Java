@@ -8,6 +8,10 @@ package GUI;
  *
  * @author philip
  */
+
+import java.awt.Color;
+
+
 public class Withdraw extends javax.swing.JFrame {
 
     /**
@@ -27,15 +31,25 @@ public class Withdraw extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel1 = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(231, 230, 221));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("₱ 69420.00");
+        jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         jLabel2.setText("Current Balance:");
@@ -45,9 +59,9 @@ public class Withdraw extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(229, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(115, 115, 115))
+                .addContainerGap(265, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(67, 67, 67)
@@ -57,9 +71,9 @@ public class Withdraw extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jLabel1)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addGap(86, 86, 86)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(92, 92, 92)
@@ -86,6 +100,10 @@ public class Withdraw extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel1AncestorAdded
+
+    }//GEN-LAST:event_jLabel1AncestorAdded
 
     /**
      * @param args the command line arguments
