@@ -19,7 +19,7 @@ public class RoundButton extends JButton {
     private final Color defaultForegroundColor;
     private final Color hoverForegroundColor;
     private final Color clickForegroundColor;
-    private final Font font = new Font("Sans Serif", Font.PLAIN, 36);
+    private final Font font = new Font("Sans Serif", Font.PLAIN, 14);
     
 
     public RoundButton(String text, Color defaultBackgroundColor, Color hoverBackgroundColor, Color clickBackgroundColor,
