@@ -16,7 +16,7 @@ public class TransactionLog {
     }
 
     public String getAccountNumber() {
-        return accountNumber;
+        return accountNumber;    
     }
 
     public String getTransactionType() {
