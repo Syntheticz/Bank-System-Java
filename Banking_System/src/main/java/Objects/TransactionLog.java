@@ -1,49 +1,40 @@
 
 package Objects;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class TransactionLog {
-    private String accountNumber;
-    private String transactionType;
+    private final String accountNumber;
+    private final String transactionType;
     private double transactionAmount;
-    private String transactionTimestamp;
+    private final String transactionTimestamp;
 
-    public TransactionLog(String accountNumber, String transactionType, double transactionAmount, String transactionTimestamp) {
+    public TransactionLog(String accountNumber, String transactionType, double transactionAmount) {
         this.accountNumber = accountNumber;
         this.transactionType = transactionType;
         this.transactionAmount = transactionAmount;
-        this.transactionTimestamp = transactionTimestamp;
+        this.transactionTimestamp = getDateTime();
     }
 
-    public String getAccountNumber() {
-        return accountNumber;    
-    }
+    public String getDateTime() {
 
-    public String getTransactionType() {
-        return transactionType;
+        LocalDateTime now = LocalDateTime.now();
+        
+        // Define the desired format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy 'at' h:mm a");
+        
+        // Format the LocalDateTime object
+        String formattedDateTime = now.format(formatter);
+        
+        return formattedDateTime;
     }
-
-    public double getTransactionAmount() {
-        return transactionAmount;
+    
+    public String getLog() {
+        return "[" + transactionTimestamp + "] " + transactionType + " | Account Number: " + accountNumber +
+            " | Amount: P" + transactionAmount;
     }
-
-    public String getTransactionTimestamp() {
-        return transactionTimestamp;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public void setTransactionAmount(double transactionAmount) {
-        this.transactionAmount = transactionAmount;
-    }
-
-    public void setTransactionTimestamp(String transactionTimestamp) {
-        this.transactionTimestamp = transactionTimestamp;
-    }
+    
+    
 }
