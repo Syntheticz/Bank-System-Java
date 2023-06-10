@@ -32,9 +32,13 @@ public class TransactionLog {
     }
     
     public String getLog() {
-        return "[" + transactionTimestamp + "] " + transactionType + " | Account Number: " + accountNumber +
-            " | Amount: P" + transactionAmount;
+        return "[" + this.transactionTimestamp + "] " + this.transactionType + " | Account Number: " + this.accountNumber +
+            " | Amount: P" + this.transactionAmount;
+        
     }
     
-    
+    public void saveLog(){
+        FileHandling file = new FileHandling();
+        file.saveLogToFile(getLog());
+    }
 }

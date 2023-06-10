@@ -20,11 +20,6 @@ public class Banking_System {
            acc.setPin("1234");
            
    
-           
-           FileHandling file = new FileHandling();
-           file.saveToFile(acc);
-           
-           Account acc1 = file.fetchAccount("123452");
-           System.out.println("Name: " + acc1.getAccountBalance());
+   
     }
 }

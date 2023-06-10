@@ -16,6 +16,8 @@ import java.util.List;
 public class FileHandling {
 
     final private String recordsFileName = "records.text";
+    final private String logsFileName = "log.text";
+
     
     public void saveToFile(Account account){
         Encryption enc = new Encryption();
@@ -50,6 +52,35 @@ public class FileHandling {
         }else{
             return null;
         }
+    }
+    
+    public void saveLog(String log){
+     final String folderName = "Logs";
+        
+     String projectDirectory = System.getProperty("user.dir");
+     String folderPath = projectDirectory + File.separator + folderName;
+     String filePath = folderPath + File.separator + logsFileName;
+     
+     try{
+         File folder = new File(folderPath);
+         if (!folder.exists()) {
+             folder.mkdirs();
+             System.out.println("Created folder: " + folderPath);
+         }
+
+         File file = new File(filePath);
+         if (!file.exists()) {
+             file.createNewFile();
+         }
+         
+         try (FileWriter writer = new FileWriter(filePath, false)) {
+             writer.append(log).append("\n");
+             writer.close();
+         }
+     }catch(IOException e){
+         e.printStackTrace();
+     }
+     
     }
     
     private void save(String folderName, Account account) {
