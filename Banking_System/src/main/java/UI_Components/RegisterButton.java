@@ -4,6 +4,7 @@
  */
 package UI_Components;
 
+import GUI.Register;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

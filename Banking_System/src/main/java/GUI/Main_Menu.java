@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package UI_Components;
+package GUI;
+import UI_Components.ExitBtn;
+import UI_Components.LoginButton;
+import UI_Components.RegisterButton;
+import UI_Components.RoundLabel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
