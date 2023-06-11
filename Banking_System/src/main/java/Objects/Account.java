@@ -73,6 +73,35 @@ public class Account {
     }
     
     //Methods
+    public void withdraw(double amount) {
+        if (accountBalance >= amount) {
+            accountBalance -= amount;
+            FileHandling fileHandler = new FileHandling();
+            fileHandler.save(this);
+            System.out.println("Withdrawal successful.");
+        } else {
+            System.out.println("Insufficient funds for withdrawal.");
+        }
+    }
     
+    public void deposit(double amount) {
+        accountBalance += amount;
+        FileHandling fileHandler = new FileHandling();
+        fileHandler.save(this);
+        System.out.println("Deposit successful.");
+    }
     
+    public void transfer(Account destinationAccount, double amount) {
+        if (accountBalance >= amount) {
+            accountBalance -= amount;
+            
+            FileHandling fileHandler = new FileHandling();
+            fileHandler.save(this);
+            destinationAccount.accountBalance += amount;
+            fileHandler.save(destinationAccount);
+            System.out.println("Transfer successful.");
+        } else {
+            System.out.println("Insufficient funds for transfer.");
+        }
+    }
 }
