@@ -109,11 +109,16 @@ public class Account {
     
     public void deposit(double amount) {
         accountBalance += amount;
+        System.out.println(this.accountNumber);
+
         FileHandling fileHandler = new FileHandling();
         fileHandler.saveToFile(this);
         System.out.println("Deposit successful.");
-
+        System.out.println(accountNumber + " : " + this.accountNumber);
+        fileHandler.saveReciept(this.accountNumber);
     }
+    
+  
     
     public void transfer(Account destinationAccount, double amount) {
         if (accountBalance >= amount) {

@@ -19,10 +19,6 @@ public class Banking_System {
            acc.setDateOfBirth("12-07-2001");
            acc.setPin("1234");
            
-<<<<<<< HEAD
-   
-   
-=======
            Account act = new Account();
            act.setName("Lex");
            act.setAccountBalance(70000.69);
@@ -32,13 +28,13 @@ public class Banking_System {
            act.setPin("1234");
            
            
-           //acc.deposit(50000);
+           acc.deposit(50000);
            //acc.withdraw(60000);
            //acc.transfer(act, 10000);
-           //System.out.println("user bal:"+ acc.getAccountBalance());
+           System.out.println("user bal:"+ acc.getAccountBalance());
            //System.out.println("receiver bal:"+ act.getAccountBalance());
            
            
->>>>>>> 0d0e7e6e752b9c6383253a3a21be0c4f4c3d089f
+
     }
 }
