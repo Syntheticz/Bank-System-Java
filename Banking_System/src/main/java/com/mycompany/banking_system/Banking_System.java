@@ -28,7 +28,13 @@ public class Banking_System {
            act.setPin("1234");
            
            
+           
            acc.deposit(50000);
+           
+           FileHandling fileHandler = new FileHandling();
+           Account ac1 = fileHandler.fetchAccount("123452");
+           
+           System.out.println("Dec: " + ac1.getAccountBalance());
            //acc.withdraw(60000);
            //acc.transfer(act, 10000);
            System.out.println("user bal:"+ acc.getAccountBalance());

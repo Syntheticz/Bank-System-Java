@@ -39,7 +39,7 @@ public class TransactionLog {
     }
     
     public String getLog() {
-        return "[" + this.transactionTimestamp + "] " + this.transactionType + " | Account Number: " + this.accountNumber +
+        return "[" + this.transactionTimestamp + "] " + "Transaction Type: " + this.transactionType + " | Account Number: " + this.accountNumber +
             " | Amount: P" + this.transactionAmount;
         
     }

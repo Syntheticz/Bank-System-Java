@@ -114,8 +114,7 @@ public class Account {
         FileHandling fileHandler = new FileHandling();
         fileHandler.saveToFile(this);
         System.out.println("Deposit successful.");
-        System.out.println(accountNumber + " : " + this.accountNumber);
-        fileHandler.saveReciept(this.accountNumber);
+        fileHandler.saveReciept(this.accountNumber, "Deposit", amount);
     }
     
   

@@ -23,7 +23,11 @@ public class FileHandling {
     
     public void saveToFile(Account account){
         Encryption enc = new Encryption();
-        Account temp = account;
+        
+        
+        Account temp = new Account(account.getName(), account.getAccountNumber(), account.getDateOfBirth(),
+        account.getPin(), account.getEncryptedAccountBalance(), account.getAccountBalance());
+
         enc.encryptAccount(temp);
         
         save("atm", temp);
@@ -214,7 +218,7 @@ public class FileHandling {
         LocalDateTime now = LocalDateTime.now();
         
         // Define the desired format
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy_h:mm_a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy_h-mm-a");
         
         // Format the LocalDateTime object
         String formattedDateTime = now.format(formatter);
@@ -222,19 +226,19 @@ public class FileHandling {
         return formattedDateTime;
     }
      
-    public void saveReciept(String accountNumber){
+    public void saveReciept(String accountNumber, String transactionType, double transactionAmount){
         Account account = fetchAccount(accountNumber);
         
-        TransactionLog log = new TransactionLog();
+        TransactionLog log = new TransactionLog(accountNumber, transactionType, transactionAmount);
         
         String fileName = getDateTime()+ "_" + account.getAccountNumber()+ ".txt";
         
-        System.out.println(fileName);
+        
         final String folderName = "Receipts";
         
         String projectDirectory = System.getProperty("user.dir");
         String folderPath = projectDirectory + File.separator + folderName;
-        String filePath = folderPath + File.separator + "test";
+        String filePath = folderPath + File.separator + fileName;
      
         try{
             File folder = new File(folderPath);
@@ -248,7 +252,7 @@ public class FileHandling {
                 file.createNewFile();
             }
 
-            try (FileWriter writer = new FileWriter(filePath, false)) {
+            try (FileWriter writer = new FileWriter(filePath)) {
                 writer.append(log.getLog()).append("\n");
                 writer.close();
             }
