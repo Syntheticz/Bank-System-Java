@@ -75,8 +75,18 @@ public class Account {
     }
     
     //Methods
+    public void withdraw(double amount) {
+        if (accountBalance >= amount) {
+            accountBalance -= amount;
+            FileHandling fileHandler = new FileHandling();
+            fileHandler.saveToFile(this);
+            System.out.println("Withdrawal successful.");
+        } else {
+            System.out.println("Insufficient funds for withdrawal.");
+        }
+    }
     
-     @Override
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true; // Same instance
@@ -96,4 +106,26 @@ public class Account {
                 Double.compare(accountBalance, otherAccount.accountBalance) == 0;
     }
     
+    
+    public void deposit(double amount) {
+        accountBalance += amount;
+        FileHandling fileHandler = new FileHandling();
+        fileHandler.saveToFile(this);
+        System.out.println("Deposit successful.");
+
+    }
+    
+    public void transfer(Account destinationAccount, double amount) {
+        if (accountBalance >= amount) {
+            accountBalance -= amount;
+            
+            FileHandling fileHandler = new FileHandling();
+            fileHandler.saveToFile(this);
+            destinationAccount.accountBalance += amount;
+            fileHandler.saveToFile(destinationAccount);
+            System.out.println("Transfer successful.");
+        } else {
+            System.out.println("Insufficient funds for transfer.");
+        }
+    }
 }
