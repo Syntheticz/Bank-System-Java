@@ -1,6 +1,8 @@
 
 package Objects;
 
+import java.util.Objects;
+
 public class Account {
     private String name;
     private String accountNumber;
@@ -74,5 +76,24 @@ public class Account {
     
     //Methods
     
+     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Same instance
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Different classes or null object
+        }
+
+        Account otherAccount = (Account) obj;
+        // Compare the fields of the two objects for equality
+        return Objects.equals(name, otherAccount.name) &&
+                Objects.equals(accountNumber, otherAccount.accountNumber) &&
+                Objects.equals(dateOfBirth, otherAccount.dateOfBirth) &&
+                Objects.equals(pin, otherAccount.pin) &&
+                Objects.equals(encryptedAccountBalance, otherAccount.encryptedAccountBalance) &&
+                Double.compare(accountBalance, otherAccount.accountBalance) == 0;
+    }
     
 }
