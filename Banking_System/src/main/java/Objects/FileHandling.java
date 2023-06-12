@@ -226,7 +226,7 @@ public class FileHandling {
         return formattedDateTime;
     }
      
-    public void saveReciept(String accountNumber, String transactionType, double transactionAmount){
+    public void saveReceipt(String accountNumber, String transactionType, double transactionAmount){
         Account account = fetchAccount(accountNumber);
         
         TransactionLog log = new TransactionLog(accountNumber, transactionType, transactionAmount);
