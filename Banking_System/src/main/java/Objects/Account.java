@@ -158,12 +158,11 @@ public class Account {
         }
     }
 
-    public Account balanceInquiry() {
+    public void balanceInquiry() {
         // Log the balance inquiry transaction
         TransactionLog transactionLog = new TransactionLog(accountNumber, "Balance Inquiry", 0.0);
         transactionLog.saveLog();
 
-        return this;
     }
 
     

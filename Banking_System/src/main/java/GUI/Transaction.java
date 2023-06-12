@@ -55,7 +55,6 @@ public class Transaction extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transaction Menu");
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 1024));
 
@@ -192,29 +191,29 @@ public class Transaction extends javax.swing.JFrame {
                 .addComponent(toMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(640, Short.MAX_VALUE)
+                .addContainerGap(631, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(transferButtton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(depositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(withdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(638, 638, 638))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(balanceInquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(618, 618, 618))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(560, 560, 560))))
+                    .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(transferButtton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(depositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(withdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(638, 638, 638))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(balanceInquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(618, 618, 618))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(569, 569, 569)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(139, 139, 139)
                 .addComponent(welcomeLabel)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(43, 43, 43)
                 .addComponent(withdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,7 +274,10 @@ public class Transaction extends javax.swing.JFrame {
     }//GEN-LAST:event_depositButtonComponentShown
 
     private void depositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositButtonActionPerformed
-        // TODO add your handling code here:
+      Deposit deposit = new Deposit(account);
+      deposit.setVisible(true);
+      deposit.setDefaultCloseOperation(EXIT_ON_CLOSE);
+      this.dispose();
     }//GEN-LAST:event_depositButtonActionPerformed
 
     private void transferButttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferButttonMouseEntered
@@ -291,7 +293,10 @@ public class Transaction extends javax.swing.JFrame {
     }//GEN-LAST:event_transferButttonComponentShown
 
     private void transferButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButttonActionPerformed
-        // TODO add your handling code here:
+        Transfer transfer = new Transfer(account);
+        transfer.setVisible(true);
+        transfer.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_transferButttonActionPerformed
 
     private void balanceInquiryButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_balanceInquiryButtonMouseEntered
@@ -307,7 +312,10 @@ public class Transaction extends javax.swing.JFrame {
     }//GEN-LAST:event_balanceInquiryButtonComponentShown
 
     private void balanceInquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceInquiryButtonActionPerformed
-        // TODO add your handling code here:
+        BalanceInquiry balinq = new BalanceInquiry(account);
+        balinq.setVisible(true);
+        balinq.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_balanceInquiryButtonActionPerformed
 
     private void toMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toMenuButtonActionPerformed

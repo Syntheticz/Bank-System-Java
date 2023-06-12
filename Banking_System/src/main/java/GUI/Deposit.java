@@ -8,12 +8,27 @@ package GUI;
  *
  * @author philip
  */
-public class Deposit extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Deposit
-     */
-    public Deposit() {
+import Objects.Account;
+import Objects.FileHandling;
+import java.awt.Color;
+import java.text.DecimalFormat;
+
+
+
+public class Deposit extends javax.swing.JFrame {
+    
+    private Account account;
+    private Boolean isEnteringPin = false;
+    
+    
+    
+    public Deposit(Account account) {
+        this.account = account;
+        initComponents();
+    }
+    
+    public Deposit(){
         initComponents();
     }
 
@@ -26,21 +41,204 @@ public class Deposit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        balance = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        amountToWithdrawField = new javax.swing.JTextField();
+        pinLabel = new javax.swing.JLabel();
+        pinField = new javax.swing.JPasswordField();
+        submitButton = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
+        errorMessage = new javax.swing.JLabel();
+        backToTransaction = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Deposit");
+        setSize(new java.awt.Dimension(1440, 1024));
+
+        jPanel1.setBackground(new java.awt.Color(231, 230, 221));
+
+        balance.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        balance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balance.setText(" 69420.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedValue = decimalFormat.format(account.getAccountBalance());
+
+        balance.setText("₱" + formattedValue);
+        balance.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                balanceAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel2.setText("Current Balance:");
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setText("Enter Amount to Deposit:");
+
+        amountToWithdrawField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        amountToWithdrawField.setForeground(new java.awt.Color(99, 100, 102));
+        amountToWithdrawField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        UI_Components.amountValidate validator = new UI_Components.amountValidate();
+        validator.validate(amountToWithdrawField);
+        amountToWithdrawField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountToWithdrawFieldActionPerformed(evt);
+            }
+        });
+
+        pinLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        pinLabel.setText("Enter PIN:");
+        pinLabel.setVisible(false);
+
+        UI_Components.PinValidator pinValidator = new UI_Components.PinValidator();
+        pinField.setVisible(false);
+        pinValidator.validatePin(pinField);
+        pinField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        pinField.setForeground(new java.awt.Color(99, 100, 102));
+
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
+        errorMessage.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        errorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMessage.setText("Error");
+        errorMessage.setText("");
+
+        backToTransaction.setText("Back");
+        backToTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToTransactionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(498, 498, 498)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backToTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(484, 484, 484)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(pinLabel)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(amountToWithdrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(668, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backToTransaction)
+                .addGap(151, 151, 151)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(amountToWithdrawField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pinLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 605, Short.MAX_VALUE)
+                .addComponent(errorMessage)
+                .addGap(18, 18, 18)
+                .addComponent(submitButton)
+                .addGap(76, 76, 76))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void balanceAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_balanceAncestorAdded
+
+    }//GEN-LAST:event_balanceAncestorAdded
+
+    private void amountToWithdrawFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountToWithdrawFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountToWithdrawFieldActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        double amount = Double.parseDouble(amountToWithdrawField.getText());
+
+        if(isEnteringPin && amount >= 100){
+            FileHandling fileHandler = new FileHandling();
+            Account temp = fileHandler.fetchAccount(account.getAccountNumber());
+            
+            String PIN = new String(pinField.getPassword());
+            
+            if(temp != null){
+                if(temp.getPin().equals(PIN)){
+                    account.deposit(amount);
+                    
+                    Receipt receipt = new Receipt(account, "Deposit", amountToWithdrawField.getText());
+                    receipt.setVisible(true);
+                    receipt.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    this.dispose();
+                    
+                    
+                }else{
+        
+                    errorMessage.setText("Pin did not match!");
+                }
+            }else{
+                errorMessage.setText("Record does Not Exist");
+
+            }
+        }
+ 
+        if(amount < 100){
+            errorMessage.setText("Amount is less than 100!");
+            return;
+        }
+        
+        pinLabel.setVisible(true);
+        pinField.setVisible(true);
+        isEnteringPin = true;
+    }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void backToTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToTransactionActionPerformed
+        Transaction transaction = new Transaction(account);
+        transaction.setVisible(true);
+        transaction.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_backToTransactionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -68,6 +266,7 @@ public class Deposit extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Deposit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -78,5 +277,15 @@ public class Deposit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amountToWithdrawField;
+    private javax.swing.JButton backToTransaction;
+    private javax.swing.JLabel balance;
+    private javax.swing.JLabel errorMessage;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField pinField;
+    private javax.swing.JLabel pinLabel;
+    private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }
