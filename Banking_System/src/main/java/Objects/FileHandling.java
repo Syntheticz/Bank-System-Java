@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +23,19 @@ public class FileHandling {
     
     public void saveToFile(Account account){
         Encryption enc = new Encryption();
-
-        enc.encryptAccount(account);
         
-        save("atm", account);
-        save("admin", account);
+        
+        Account temp = new Account(account.getName(), account.getAccountNumber(), account.getDateOfBirth(),
+        account.getPin(), account.getEncryptedAccountBalance(), account.getAccountBalance());
+
+        enc.encryptAccount(temp);
+        
+        save("atm", temp);
+        save("admin", temp);
     }
     
     private String getFilePath(String folderName, String fileName){
-         String projectDirectory = System.getProperty("user.dir");
+        String projectDirectory = System.getProperty("user.dir");
 
         String folderPath = projectDirectory + File.separator + folderName;
         return folderPath + File.separator + recordsFileName;
@@ -53,6 +59,7 @@ public class FileHandling {
             return null;
         }
     }
+    
     
     public void saveLog(String log){
      final String folderName = "Logs";
@@ -82,6 +89,8 @@ public class FileHandling {
      }
      
     }
+    
+    
     
     private void save(String folderName, Account account) {
      String projectDirectory = System.getProperty("user.dir");
@@ -201,6 +210,57 @@ public class FileHandling {
         writer.append(account.getEncryptedAccountBalance()).append(",");
         writer.append(Double.toString(account.getAccountBalance()));
         writer.append("\n");
+    }
+     
+     
+    private String getDateTime() {
+
+        LocalDateTime now = LocalDateTime.now();
+        
+        // Define the desired format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy_h-mm-a");
+        
+        // Format the LocalDateTime object
+        String formattedDateTime = now.format(formatter);
+        
+        return formattedDateTime;
+    }
+     
+    public void saveReceipt(String accountNumber, String transactionType, double transactionAmount){
+        Account account = fetchAccount(accountNumber);
+        
+        TransactionLog log = new TransactionLog(accountNumber, transactionType, transactionAmount);
+        
+        String fileName = getDateTime()+ "_" + account.getAccountNumber()+ ".txt";
+        
+        
+        final String folderName = "Receipts";
+        
+        String projectDirectory = System.getProperty("user.dir");
+        String folderPath = projectDirectory + File.separator + folderName;
+        String filePath = folderPath + File.separator + fileName;
+     
+        try{
+            File folder = new File(folderPath);
+            if (!folder.exists()) {
+                folder.mkdirs();
+                System.out.println("Created folder: " + folderPath);
+            }
+
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            try (FileWriter writer = new FileWriter(filePath)) {
+                writer.append(log.getLog()).append("\n");
+                writer.close();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+       
     }
 
 }

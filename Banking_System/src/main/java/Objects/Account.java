@@ -76,7 +76,8 @@ public class Account {
     
     //Methods
     
-     @Override
+    
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true; // Same instance
@@ -95,5 +96,76 @@ public class Account {
                 Objects.equals(encryptedAccountBalance, otherAccount.encryptedAccountBalance) &&
                 Double.compare(accountBalance, otherAccount.accountBalance) == 0;
     }
+    
+    
+    public void withdraw(double amount) {
+        if (accountBalance >= amount) {
+            accountBalance -= amount;
+            //save to File
+            FileHandling fileHandler = new FileHandling();
+            fileHandler.saveToFile(this);
+            System.out.println("Withdrawal successful.");
+            
+            //Save Recepit
+            fileHandler.saveReceipt(this.accountNumber, "Withdrawal", amount);
+
+            // Log the transaction
+            TransactionLog transactionLog = new TransactionLog(accountNumber, "Withdrawal", amount);
+            transactionLog.saveLog();
+            
+            
+        } else {
+            System.out.println("Insufficient funds for withdrawal.");
+        }
+    }
+
+    public void deposit(double amount) {
+        accountBalance += amount;
+        System.out.println(this.accountNumber);
+        //Save to File
+        FileHandling fileHandler = new FileHandling();
+        fileHandler.saveToFile(this);
+        System.out.println("Deposit successful.");
+        
+        //Save Receipt
+        fileHandler.saveReceipt(this.accountNumber, "Deposit", amount);
+
+        // Log the transaction
+        TransactionLog transactionLog = new TransactionLog(accountNumber, "Deposit", amount);
+        transactionLog.saveLog();
+    }
+
+    public void transfer(Account destinationAccount, double amount) {
+        if (accountBalance >= amount) {
+            accountBalance -= amount;
+            //Save to Files
+            FileHandling fileHandler = new FileHandling();
+            fileHandler.saveToFile(this);
+            destinationAccount.accountBalance += amount;
+            fileHandler.saveToFile(destinationAccount);
+            System.out.println("Transfer successful.");
+            
+            //Save Recepit
+            fileHandler.saveReceipt(this.accountNumber, "Transfer", amount);
+            
+            
+
+            // Log the transaction
+            TransactionLog transactionLog = new TransactionLog(accountNumber, "Transfer", amount);
+            transactionLog.saveLog();
+        } else {
+            System.out.println("Insufficient funds for transfer.");
+        }
+    }
+
+    public Account balanceInquiry() {
+        // Log the balance inquiry transaction
+        TransactionLog transactionLog = new TransactionLog(accountNumber, "Balance Inquiry", 0.0);
+        transactionLog.saveLog();
+
+        return this;
+    }
+
+    
     
 }
