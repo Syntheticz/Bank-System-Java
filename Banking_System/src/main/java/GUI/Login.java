@@ -57,10 +57,10 @@ public final class Login {
     GridBagConstraints gbc = new GridBagConstraints();
     
     
-    public Login()
+    public Login(JFrame rootFrame)
     {
         setup_comp();
-        setup_frame();
+        setup_frame(rootFrame);
     }
     
     public void setup_comp() 
@@ -69,7 +69,7 @@ public final class Login {
         panel_container.setBackground(new Color(231,230,221));
         
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10,10,10,10);
+        gbc.insets = new Insets(10,0,10,0);
         
         gbc.gridx = 0;
         gbc.gridy = 7;      
@@ -95,11 +95,15 @@ public final class Login {
                
     }
     
-    public void setup_frame()
+    public void setup_frame(JFrame rootFrame)
     {
         frame.add(panel_container);
+        
+        frame.setSize(rootFrame.getSize());
+        frame.setLocation(rootFrame.getLocation());
+        
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        //frame.pack();
         frame.setVisible(true);
     }
     
