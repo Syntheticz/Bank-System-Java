@@ -1,6 +1,8 @@
 
 package GUI;
 
+import Objects.Account;
+import Objects.FileHandling;
 import UI_Components.BdayField;
 import UI_Components.InitialDepositField;
 import UI_Components.NameField;
@@ -12,6 +14,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +23,11 @@ import javax.swing.JPanel;
  *
  * @author Manuel Marin
  */
-public final class Register {
+public final class Register extends JFrame{
+    
+    //Chekcers
+    Boolean isSamePIN = false;
+    Boolean isvalidDeposit = false;
     
     // Containers
     JFrame frame = new JFrame();    
@@ -46,9 +53,11 @@ public final class Register {
     InitialDepositField initial_deposit_field = new InitialDepositField(frame,"Initial Deposit (Min 10,000 PHP)",15);
     PinField pin_field = new PinField(frame,"4-digit PIN",4);
     RePinField repin_field = new RePinField(frame,pin_field,"Re-enter 4-digit PIN",4);
+    JLabel ErrorMessage = new JLabel();
     
     // Button
     SubmitButton submit_btn = new SubmitButton(frame, "Continue",btn_backgroundColor,hover_btn_backgroundColor,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
+    
     
     // Layout 
     GridBagLayout layout = new GridBagLayout();
@@ -56,10 +65,20 @@ public final class Register {
     // Layout Constraint
     GridBagConstraints gbc = new GridBagConstraints();
     
+    
+    
     public Register(JFrame rootFrame)
     {
         setup_comp();
         setup_frame(rootFrame);
+    }
+    
+    private static String generateAccountNumber() {
+        Random random = new Random();
+        int min = 100000;  // Minimum 6-digit number (100000)
+        int max = 999999;  // Maximum 6-digit number (999999)
+        int generatedNumber = random.nextInt(max - min + 1) + min;
+        return String.valueOf(generatedNumber);
     }
     
     public void setup_comp() 
@@ -102,12 +121,44 @@ public final class Register {
         gbc.gridx = 0;
         gbc.gridy = 13;   
         gbc.anchor = GridBagConstraints.CENTER; // Alignment
-        panel_container.add(new JLabel("Error"),gbc);
+        panel_container.add(ErrorMessage,gbc);
         
         
         gbc.gridx = 0;
         gbc.gridy = 14;      
         panel_container.add(submit_btn,gbc);
+        submit_btn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    String PIN = new String(pin_field.getPassword());
+                    String rePIN = new String(repin_field.getPassword());
+
+                    if(!PIN.equals(rePIN)){
+                        ErrorMessage.setText("Pin does not match!");
+                        return;
+                    }
+                    isSamePIN = true;
+                    
+                    if(!(Double.parseDouble(initial_deposit_field.getText()) >= 10000)){
+                        ErrorMessage.setText("Invalid Initial Deposit!");
+                        return;
+                    }
+                    
+                    isvalidDeposit = true;
+                            
+                    if(isSamePIN && isvalidDeposit){
+                        Account account = new Account(name_field.getText(), generateAccountNumber(), bday_field.getText(), PIN, "", Double.parseDouble(initial_deposit_field.getText()));
+                        FileHandling filehandler = new FileHandling();
+                        
+                        filehandler.saveToFile(account);
+                        AccSuccess success = new AccSuccess(frame, account);
+
+                    }else{
+                        return;
+                    }
+                    
+            }
+        });
         
         
     }

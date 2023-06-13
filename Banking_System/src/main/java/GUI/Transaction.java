@@ -319,7 +319,8 @@ public class Transaction extends javax.swing.JFrame {
     }//GEN-LAST:event_balanceInquiryButtonActionPerformed
 
     private void toMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toMenuButtonActionPerformed
-        // TODO add your handling code here:
+       Main_Menu main = new Main_Menu();
+       this.dispose();
     }//GEN-LAST:event_toMenuButtonActionPerformed
 
     /**

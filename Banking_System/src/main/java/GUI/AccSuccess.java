@@ -56,8 +56,11 @@ public final class AccSuccess {
     //Account acc = new Account();
     //String name = acc.getName();
     
-    public AccSuccess(JFrame rootFrame)
+    private Account account;
+    
+    public AccSuccess(JFrame rootFrame, Account account)
     {
+        this.account = account;
         setup_comp();
         setup_frame(rootFrame);
     }
@@ -65,13 +68,13 @@ public final class AccSuccess {
 
     public void setup_comp()
     {
-        Account acc = new Account();
-           acc.setName("Philip");
-           acc.setAccountBalance(69421.69);
-           acc.setAccountNumber("123456");
-           acc.setEncryptedAccountBalance("66969696");
-           acc.setDateOfBirth("12-07-2001");
-           acc.setPin("1234");
+        Account acc = account;
+//           acc.setName("Philip");
+//           acc.setAccountBalance(69421.69);
+//           acc.setAccountNumber("123456");
+//           acc.setEncryptedAccountBalance("66969696");
+//           acc.setDateOfBirth("12-07-2001");
+//           acc.setPin("1234");
         
         RoundLabel namelb = new RoundLabel(acc.getName(), title_backgroundColor, title_foregroundColor);
         RoundLabel accNumlb = new RoundLabel(acc.getAccountNumber(), title_backgroundColor, title_foregroundColor);
@@ -129,6 +132,16 @@ public final class AccSuccess {
         gbc.gridy = 10;
         panel_container.add(transaction_btn, gbc);
 
+        transaction_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Transaction transaction = new Transaction(account);
+                transaction.setVisible(true);
+                transaction.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.dispose();
+            }
+        });
+        
+        
     }
     
     

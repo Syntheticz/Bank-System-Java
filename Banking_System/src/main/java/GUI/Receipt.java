@@ -118,10 +118,8 @@ public class Receipt extends javax.swing.JFrame {
         updatedBalance1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         updatedBalance1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         updatedBalance1.setText("69420");
-        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        decimalFormat.setDecimalSeparatorAlwaysShown(true);
-        decimalFormat.format(account.getAccountBalance());
-        updatedBalance1.setText("₱ " + decimalFormat);
+
+        updatedBalance1.setText("₱ " + String.valueOf(Math.floor(account.getAccountBalance() * 100) / 100));
         updatedBalance1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 updatedBalance1AncestorAdded(evt);

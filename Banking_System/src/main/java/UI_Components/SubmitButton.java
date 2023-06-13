@@ -31,16 +31,6 @@ public class SubmitButton extends RoundButton
                 setColorEffect(getDefaultBackgroundColor());
                 setFontColorEffect(getDefaultForegroundColor());
             }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                setColorEffect(getClickBackgroundColor()); 
-                AccSuccess success_panel = new AccSuccess(rootFrame);
-                
-                if (rootFrame.isVisible()) {
-                    rootFrame.setVisible(false);
-                }
-            }
         });
     }
     

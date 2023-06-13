@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import Objects.Account;
+import Objects.FileHandling;
 import UI_Components.AccNumField;
 import UI_Components.PinField;
 import UI_Components.RePinField;
@@ -14,6 +16,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -40,6 +43,7 @@ public final class Login {
     
     // Title Label
     RoundLabel title_label = new RoundLabel("Log-in Account", title_backgroundColor, title_foregroundColor);
+    JLabel ErrorMessage = new JLabel();
     
     // Text Fields
     AccNumField acc_num_field = new AccNumField(frame, "Account Number",20);
@@ -49,6 +53,8 @@ public final class Login {
     // Button
     SubmitButton submit_btn = new SubmitButton(frame, "Continue",btn_backgroundColor,hover_btn_backgroundColor
             ,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
+    
+    
     
     // Layout 
     GridBagLayout layout = new GridBagLayout();
@@ -88,10 +94,40 @@ public final class Login {
         gbc.gridx = 0;
         gbc.gridy = 10;      
         panel_container.add(repin_field,gbc);
-                
+         
         gbc.gridx = 0;
         gbc.gridy = 11;      
+        panel_container.add(ErrorMessage,gbc);
+        ErrorMessage.setText("");
+        
+        gbc.gridx = 0;
+        gbc.gridy = 12;      
         panel_container.add(submit_btn,gbc);
+        submit_btn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FileHandling filehandler = new FileHandling();                   
+                String PIN = new String(pin_field.getPassword());
+                String rePIN = new String(repin_field.getPassword());
+                Account account = filehandler.fetchAccount(acc_num_field.getText());
+                
+                if(account == null){
+                    ErrorMessage.setText("Accont not found!");
+                    return;
+                }
+            
+                if(!PIN.equals(rePIN)){
+                    ErrorMessage.setText("PIN does not match!");
+                    return;
+                }
+                
+                Transaction transaction = new Transaction(account);
+                transaction.setVisible(true);
+                transaction.setDefaultCloseOperation(3);
+                frame.dispose();
+            }
+        });
+        
                
     }
     

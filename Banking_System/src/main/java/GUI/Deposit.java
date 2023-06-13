@@ -212,7 +212,6 @@ public class Deposit extends javax.swing.JFrame {
                     receipt.setDefaultCloseOperation(EXIT_ON_CLOSE);
                     this.dispose();
                     
-                    
                 }else{
         
                     errorMessage.setText("Pin did not match!");
