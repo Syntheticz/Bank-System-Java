@@ -1,15 +1,22 @@
 
 package Objects;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
 public class TransactionLog {
-    private final String accountNumber;
-    private final String transactionType;
+    private String accountNumber;
+    private String transactionType;
     private double transactionAmount;
-    private final String transactionTimestamp;
+    private String transactionTimestamp;
+    
+    //Default Constrctor
+    public TransactionLog(){
+        
+    }
 
     public TransactionLog(String accountNumber, String transactionType, double transactionAmount) {
         this.accountNumber = accountNumber;
@@ -32,9 +39,14 @@ public class TransactionLog {
     }
     
     public String getLog() {
-        return "[" + transactionTimestamp + "] " + transactionType + " | Account Number: " + accountNumber +
-            " | Amount: P" + transactionAmount;
+        return "[" + this.transactionTimestamp + "] " + "Transaction Type: " + this.transactionType + " | Account Number: " + this.accountNumber +
+            " | Amount: P" + this.transactionAmount;
+        
     }
+   
     
-    
+    public void saveLog(){
+        FileHandling file = new FileHandling();
+        file.saveLog(getLog());
+    }
 }

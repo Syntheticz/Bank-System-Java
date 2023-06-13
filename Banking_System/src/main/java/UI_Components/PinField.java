@@ -11,7 +11,7 @@ import javax.swing.text.PlainDocument;
  *
  * @author Manuel Marin
  */
-public class PinField extends TextField
+public class PinField extends PasswordField
 {
     private final int maxLength = 4;
     
