@@ -37,6 +37,7 @@ public class TextField extends JTextField {
         doc.setDocumentFilter(new Filter());
     }
     
+    //public void setDisabled() { this.setEnabled(false); }
     public void setValid() { this.setBorder(new LineBorder(Color.GREEN)); } 
     public void setInvalid() { this.setBorder(new LineBorder(Color.RED)); } 
     

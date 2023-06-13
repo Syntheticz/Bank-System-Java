@@ -5,7 +5,7 @@ import GUI.Receipt;
 import Objects.Account;
 import javax.swing.JFrame;
 import GUI.Main_Menu;
-import GUI.Transaction;
+import GUI.Transaction; 
 
 import Objects.FileHandling;
 
