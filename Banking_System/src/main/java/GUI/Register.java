@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -47,6 +48,9 @@ public final class Register {
     PinField pin_field = new PinField(frame,"4-digit PIN",4);
     RePinField repin_field = new RePinField(frame,pin_field,"Re-enter 4-digit PIN",4);
     
+    ImageIcon image = new ImageIcon("OurBank.png");
+    JLabel logo = new JLabel(image);
+    
     // Button
     SubmitButton submit_btn = new SubmitButton(frame, "Continue",btn_backgroundColor,hover_btn_backgroundColor,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
     
@@ -68,7 +72,11 @@ public final class Register {
         panel_container.setBackground(new Color(231,230,221));
         
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(40,0,150,0);
+        gbc.insets = new Insets(10,0,20,0);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 5;      
+        panel_container.add(logo,gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 7;      
@@ -97,13 +105,6 @@ public final class Register {
         gbc.gridx = 0;
         gbc.gridy = 12;      
         panel_container.add(repin_field,gbc);
-        
-        gbc.insets.bottom = 20;
-        gbc.gridx = 0;
-        gbc.gridy = 13;   
-        gbc.anchor = GridBagConstraints.CENTER; // Alignment
-        panel_container.add(new JLabel("Error"),gbc);
-        
         
         gbc.gridx = 0;
         gbc.gridy = 14;      

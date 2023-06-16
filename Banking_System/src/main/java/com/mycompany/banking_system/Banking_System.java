@@ -10,7 +10,7 @@ import Objects.FileHandling;
 
 public class Banking_System {
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     public static void main(String[] args) { 
           Main_Menu menu = new Main_Menu();
            //Account acc = new Account();
@@ -20,8 +20,8 @@ public class Banking_System {
            //acc.setEncryptedAccountBalance("66969696");
            //acc.setDateOfBirth("12-07-2001");
            //acc.setPin("1234");
-=======
-    public static void main(String[] args) {   
+//=======
+    //public static void main(String[] args) {   
            Account acc = new Account();
            acc.setName("Philips");
            acc.setAccountBalance(269.689);
@@ -29,7 +29,7 @@ public class Banking_System {
            acc.setEncryptedAccountBalance("1");
            acc.setDateOfBirth("12-07-2001");
            acc.setPin("1234");
->>>>>>> 38b6f1ee426f9a4c7c956757ebc066bbbbd56bf3
+//>>>>>>> 38b6f1ee426f9a4c7c956757ebc066bbbbd56bf3
            
            Account act = new Account();
            act.setName("Lex");

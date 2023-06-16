@@ -43,7 +43,6 @@ public final class AccSuccess {
     GridBagConstraints gbc = new GridBagConstraints();
     
     //Labels
-    RoundLabel title_label = new RoundLabel("Account successfully opened!", no_backgroundColor, title_foregroundColor);
     RoundLabel name_label = new RoundLabel("Name:", no_backgroundColor, title_foregroundColor);
     RoundLabel accNum_label = new RoundLabel("Account Number:", no_backgroundColor, title_foregroundColor);
     RoundLabel dob_label = new RoundLabel("Birthdate:", no_backgroundColor, title_foregroundColor);
@@ -84,11 +83,7 @@ public final class AccSuccess {
         
         gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(0,0,100,0);
-        
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        panel_container.add(title_label,gbc);
-        
+         
         gbc.insets.bottom = 5;
         gbc.insets.top = 5;
         gbc.gridx = 0;

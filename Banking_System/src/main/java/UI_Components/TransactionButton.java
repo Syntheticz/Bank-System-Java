@@ -4,7 +4,7 @@
  */
 package UI_Components;
 
-import GUI.Transaction;
+import GUI.TransactionLoading;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,12 +34,13 @@ public class TransactionButton extends RoundButton{
             @Override
             public void mouseClicked(MouseEvent e) {
                 setColorEffect(getClickBackgroundColor());
-                //Transaction transaction_panel = new Transaction(rootFrame);
+                //palitan nalang kung saan siya dapat mapunta
+                TransactionLoading transaction_panel = new TransactionLoading(rootFrame);
                 
                 
-                //if (rootFrame.isVisible()) {
-                //    rootFrame.setVisible(false);
-                //}
+                if (rootFrame.isVisible()) {
+                    rootFrame.setVisible(false);
+                }
             }
         });
     

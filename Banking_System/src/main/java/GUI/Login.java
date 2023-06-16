@@ -10,6 +10,7 @@ import UI_Components.RePinField;
 import UI_Components.RoundLabel;
 import UI_Components.SubmitButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -77,16 +78,19 @@ public final class Login {
         
         
         gbc.gridx = 0;
-        gbc.gridy = 8;      
+        gbc.gridy = 8;
+        acc_num_field.setPreferredSize(new Dimension(200, 30));
         panel_container.add(acc_num_field,gbc);
         
         
         gbc.gridx = 0;
-        gbc.gridy = 9;      
+        gbc.gridy = 9;    
+        pin_field.setPreferredSize(new Dimension(200, 30));
         panel_container.add(pin_field,gbc);
         
         gbc.gridx = 0;
-        gbc.gridy = 10;      
+        gbc.gridy = 10;   
+        repin_field.setPreferredSize(new Dimension(200, 30));
         panel_container.add(repin_field,gbc);
                 
         gbc.gridx = 0;
