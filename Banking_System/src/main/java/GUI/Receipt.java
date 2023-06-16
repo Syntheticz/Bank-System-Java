@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+import Objects.Account;
+import Objects.FileHandling;
+import Objects.TransactionLog;
 import java.awt.Color;
+import java.text.DecimalFormat;
 /**
  *
  * @author philip
@@ -13,6 +17,26 @@ public class Receipt extends javax.swing.JFrame {
     /**
      * Creates new form Receipt
      */
+    private Account account;
+    private String operationTypeValue, issuedAmountValue;
+    private TransactionLog log;
+    
+    public Receipt(Account account, String operationTypeValue, String issuedAmountValue){
+        this.account = account;
+        this.operationTypeValue = operationTypeValue;
+        this.issuedAmountValue = issuedAmountValue;
+        
+        log = new TransactionLog();
+        initComponents();
+    }
+    
+    
+    private void generateReceipt(){
+        FileHandling filehandler = new FileHandling();
+        double amount = Double.parseDouble(issuedAmountValue);
+        filehandler.saveReceipt(account.getAccountNumber(), operationTypeValue, amount);
+    }
+    
     public Receipt() {
         initComponents();
     }
@@ -29,7 +53,7 @@ public class Receipt extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        updatedBalance = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
+        issuedDate = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
         jLabel4 = new javax.swing.JLabel();
         accountNumber = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
         jLabel5 = new javax.swing.JLabel();
@@ -38,8 +62,14 @@ public class Receipt extends javax.swing.JFrame {
         ;
         backToTransactionButton1 = new Objects.RoundButton("", new Color(160, 162, 166), new Color(51, 97, 172), new Color(160, 162, 166), new Color(231, 230, 221), Color.WHITE, Color.WHITE)
         ;
+        jLabel6 = new javax.swing.JLabel();
+        issuedAmount = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
+        jLabel3 = new javax.swing.JLabel();
+        operationType = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Rceipt");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(231, 230, 221));
         jPanel1.setForeground(new java.awt.Color(231, 230, 221));
@@ -50,12 +80,14 @@ public class Receipt extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel2.setText("Account Number:");
 
-        updatedBalance.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        updatedBalance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        updatedBalance.setText("6/08/2022");
-        updatedBalance.addAncestorListener(new javax.swing.event.AncestorListener() {
+        issuedDate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        issuedDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        issuedDate.setText("6/08/2022");
+
+        issuedDate.setText(log.getDateTime());
+        issuedDate.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                updatedBalanceAncestorAdded(evt);
+                issuedDateAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -69,6 +101,7 @@ public class Receipt extends javax.swing.JFrame {
         accountNumber.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         accountNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         accountNumber.setText("19216191");
+        accountNumber.setText(account.getAccountNumber());
         accountNumber.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 accountNumberAncestorAdded(evt);
@@ -80,11 +113,15 @@ public class Receipt extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel5.setText("Isuued Date:");
+        jLabel5.setText("Issued Date:");
 
         updatedBalance1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         updatedBalance1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         updatedBalance1.setText("69420");
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        decimalFormat.setDecimalSeparatorAlwaysShown(true);
+        decimalFormat.format(account.getAccountBalance());
+        updatedBalance1.setText("₱ " + decimalFormat);
         updatedBalance1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 updatedBalance1AncestorAdded(evt);
@@ -109,52 +146,101 @@ public class Receipt extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel6.setText("Isuued Amount:");
+
+        issuedAmount.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        issuedAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        issuedAmount.setText("6/08/2022");
+        issuedAmount.setText("₱ "+ issuedAmountValue);
+        issuedAmount.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                issuedAmountAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setText("Operation Type:");
+
+        operationType.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        operationType.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        operationType.setText("19216191");
+        operationType.setText(operationTypeValue);
+        operationType.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                operationTypeAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(backToTransactionButton))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updatedBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updatedBalance1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(backToTransactionButton1)
-                        .addGap(16, 16, 16))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(issuedDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(issuedAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updatedBalance1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(operationType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(backToTransactionButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(backToTransactionButton1)))
+                .addGap(6, 6, 6))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(accountNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
                 .addComponent(jLabel1)
-                .addGap(114, 114, 114))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(operationType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(accountNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(updatedBalance1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(updatedBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                    .addComponent(issuedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(issuedAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backToTransactionButton)
                     .addComponent(backToTransactionButton1))
@@ -175,9 +261,9 @@ public class Receipt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updatedBalanceAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_updatedBalanceAncestorAdded
+    private void issuedDateAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_issuedDateAncestorAdded
 
-    }//GEN-LAST:event_updatedBalanceAncestorAdded
+    }//GEN-LAST:event_issuedDateAncestorAdded
 
     private void accountNumberAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_accountNumberAncestorAdded
         // TODO add your handling code here:
@@ -188,12 +274,25 @@ public class Receipt extends javax.swing.JFrame {
     }//GEN-LAST:event_updatedBalance1AncestorAdded
 
     private void backToTransactionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToTransactionButtonActionPerformed
-        // TODO add your handling code here:
+       generateReceipt();
+       Transaction transaction = new Transaction(account);
+       transaction.setVisible(true);
+       transaction.setDefaultCloseOperation(EXIT_ON_CLOSE);
+       this.dispose();
     }//GEN-LAST:event_backToTransactionButtonActionPerformed
 
     private void backToTransactionButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToTransactionButton1ActionPerformed
-        // TODO add your handling code here:
+        Main_Menu menu = new Main_Menu();
+        this.dispose();
     }//GEN-LAST:event_backToTransactionButton1ActionPerformed
+
+    private void issuedAmountAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_issuedAmountAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issuedAmountAncestorAdded
+
+    private void operationTypeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_operationTypeAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_operationTypeAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -234,12 +333,16 @@ public class Receipt extends javax.swing.JFrame {
     private javax.swing.JLabel accountNumber;
     private javax.swing.JButton backToTransactionButton;
     private javax.swing.JButton backToTransactionButton1;
+    private javax.swing.JLabel issuedAmount;
+    private javax.swing.JLabel issuedDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel updatedBalance;
+    private javax.swing.JLabel operationType;
     private javax.swing.JLabel updatedBalance1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 [6/16/2023 at 10:57 AM] Transaction Type: Deposit | Account Number: 123452 | Amount: P50000.0
+=======
+[6/13/2023 at 5:51 AM] Transaction Type: Withdrawal | Account Number: 123452 | Amount: P100.0
+[6/13/2023 at 5:57 AM] Transaction Type: Withdrawal | Account Number: 123452 | Amount: P200.0
+[6/13/2023 at 6:19 AM] Transaction Type: Transfer | Account Number: 123452 | Amount: P1000.0
+[6/13/2023 at 6:31 AM] Transaction Type: Balance Inquiry | Account Number: 123452 | Amount: P0.0
+[6/13/2023 at 6:36 AM] Transaction Type: Balance Inquiry | Account Number: 123452 | Amount: P0.0
+>>>>>>> a6c9312403e71b4aa8cce8bb608d40fa172f8c70

@@ -51,6 +51,10 @@ public class FileHandling {
         Account accountFromATM = fetchAccountFromFile(accounNumber, "atm");   
         Account accountFromAdmin = fetchAccountFromFile(accounNumber, "admin");
         
+        if(accountFromAdmin == null || accountFromATM == null){
+            return null;
+        }
+        
         if(accountFromAdmin.equals(accountFromATM)){
             Account acc = readAccountByAccountNumber(getFilePath("atm", recordsFileName), accounNumber);
 
@@ -61,32 +65,32 @@ public class FileHandling {
     }
     
     
-    public void saveLog(String log){
-     final String folderName = "Logs";
-        
-     String projectDirectory = System.getProperty("user.dir");
-     String folderPath = projectDirectory + File.separator + folderName;
-     String filePath = folderPath + File.separator + logsFileName;
-     
-     try{
-         File folder = new File(folderPath);
-         if (!folder.exists()) {
-             folder.mkdirs();
-             System.out.println("Created folder: " + folderPath);
-         }
+   public void saveLog(String log) {
+    final String folderName = "Logs";
+    String projectDirectory = System.getProperty("user.dir");
+    String folderPath = projectDirectory + File.separator + folderName;
+    String filePath = folderPath + File.separator + logsFileName;
 
-         File file = new File(filePath);
-         if (!file.exists()) {
-             file.createNewFile();
-         }
-         
-         try (FileWriter writer = new FileWriter(filePath, false)) {
-             writer.append(log).append("\n");
-             writer.close();
-         }
-     }catch(IOException e){
-         e.printStackTrace();
-     }
+    try {
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+            System.out.println("Created folder: " + folderPath);
+        }
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        try (FileWriter writer = new FileWriter(filePath, true)) {  // Pass true to append text
+            writer.append(log).append("\n");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+
      
     }
     
