@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -40,6 +41,17 @@ public class PasswordField extends JPasswordField {
     
     public void setValid() { this.setBorder(new LineBorder(Color.GREEN)); } 
     public void setInvalid() { this.setBorder(new LineBorder(Color.RED)); } 
+    
+    public boolean isPassValid() { 
+        
+        Border border = getBorder();
+        if (border instanceof LineBorder lineBorder) {
+            if (lineBorder.getLineColor().equals(Color.RED)) {
+                return false;
+            }
+        }
+        return true;
+    }
     
     public void setMaxLength(int l) { maxLength = l; }
     

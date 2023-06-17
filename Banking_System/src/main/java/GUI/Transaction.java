@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
 import Objects.Account;
@@ -40,7 +37,9 @@ public class Transaction extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         welcomeLabel = new javax.swing.JLabel();
+        welcomeLabel1 = new javax.swing.JLabel();
         withdrawButton = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221))
         ;
         depositButton = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221))
@@ -51,23 +50,34 @@ public class Transaction extends javax.swing.JFrame {
         ;
         toMenuButton = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221))
         ;
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transaction Menu");
-        setResizable(false);
+        setBackground(new java.awt.Color(231, 230, 221));
+        setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         setSize(new java.awt.Dimension(1440, 1024));
 
         jPanel1.setBackground(new java.awt.Color(231, 230, 221));
+        jPanel1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
+        jPanel1.setLayout(new java.awt.GridLayout(9, 1, 0, 4));
+        jPanel1.add(jLabel1);
 
-        welcomeLabel.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        welcomeLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        welcomeLabel.setForeground(new java.awt.Color(232, 199, 102));
         welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         welcomeLabel.setText("None");
         welcomeLabel.setText("Welcome " + account.getName());
+        jPanel1.add(welcomeLabel);
+
+        welcomeLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        welcomeLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeLabel1.setText("Please select transaction:");
+        welcomeLabel.setText("Welcome " + account.getName());
+        jPanel1.add(welcomeLabel1);
 
         withdrawButton.setBackground(new java.awt.Color(231, 230, 221));
-        withdrawButton.setFont(new java.awt.Font("sansserif", 0, 17)); // NOI18N
+        withdrawButton.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         withdrawButton.setText("Withdraw");
         withdrawButton.setBorder(null);
         withdrawButton.setBorderPainted(false);
@@ -90,9 +100,10 @@ public class Transaction extends javax.swing.JFrame {
                 withdrawButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(withdrawButton);
 
         depositButton.setBackground(new java.awt.Color(231, 230, 221));
-        depositButton.setFont(new java.awt.Font("sansserif", 0, 17)); // NOI18N
+        depositButton.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         depositButton.setText("Deposit");
         depositButton.setBorder(null);
         depositButton.setBorderPainted(false);
@@ -115,9 +126,10 @@ public class Transaction extends javax.swing.JFrame {
                 depositButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(depositButton);
 
         transferButtton.setBackground(new java.awt.Color(231, 230, 221));
-        transferButtton.setFont(new java.awt.Font("sansserif", 0, 17)); // NOI18N
+        transferButtton.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         transferButtton.setText("Transfer");
         transferButtton.setBorder(null);
         transferButtton.setBorderPainted(false);
@@ -140,9 +152,10 @@ public class Transaction extends javax.swing.JFrame {
                 transferButttonActionPerformed(evt);
             }
         });
+        jPanel1.add(transferButtton);
 
         balanceInquiryButton.setBackground(new java.awt.Color(231, 230, 221));
-        balanceInquiryButton.setFont(new java.awt.Font("sansserif", 0, 17)); // NOI18N
+        balanceInquiryButton.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         balanceInquiryButton.setText("Balance Inquiry");
         balanceInquiryButton.setBorder(null);
         balanceInquiryButton.setBorderPainted(false);
@@ -165,9 +178,10 @@ public class Transaction extends javax.swing.JFrame {
                 balanceInquiryButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(balanceInquiryButton);
 
         toMenuButton.setBackground(new java.awt.Color(231, 230, 221));
-        toMenuButton.setFont(new java.awt.Font("sansserif", 0, 17)); // NOI18N
+        toMenuButton.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         toMenuButton.setText("Back to Main Menu");
         toMenuButton.setBorder(null);
         toMenuButton.setBorderPainted(false);
@@ -178,65 +192,20 @@ public class Transaction extends javax.swing.JFrame {
                 toMenuButtonActionPerformed(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel2.setText("Please select a transaction:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(toMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(631, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(transferButtton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(depositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(withdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(638, 638, 638))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(balanceInquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(618, 618, 618))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(569, 569, 569)))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(welcomeLabel)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(43, 43, 43)
-                .addComponent(withdrawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(depositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(transferButtton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(balanceInquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 512, Short.MAX_VALUE)
-                .addComponent(toMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel1.add(toMenuButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
         );
 
         pack();
@@ -363,11 +332,12 @@ public class Transaction extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton balanceInquiryButton;
     private javax.swing.JButton depositButton;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton toMenuButton;
     private javax.swing.JButton transferButtton;
     private javax.swing.JLabel welcomeLabel;
+    private javax.swing.JLabel welcomeLabel1;
     private javax.swing.JButton withdrawButton;
     // End of variables declaration//GEN-END:variables
 }

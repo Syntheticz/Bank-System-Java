@@ -8,8 +8,6 @@ import UI_Components.LoginButton;
 import UI_Components.RegisterButton;
 import UI_Components.RoundLabel;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -30,12 +28,13 @@ public final class Main_Menu {
     
     Color btn_foregroundColor = new Color(0,0,0);
     Color hover_btn_foregroundColor = new Color(255,255,255);
+    
     // Containers
     JFrame frame = new JFrame();    
     JPanel panel_container = new JPanel();
     
     // Title Label
-    RoundLabel title_label = new RoundLabel("Welcome to OurBank!",title_backgroundColor, title_foregroundColor);
+    RoundLabel title_label = new RoundLabel("  Welcome to OurBank!  ",title_backgroundColor, title_foregroundColor);
     
     // Buttons
     RegisterButton register_btn = new RegisterButton(frame,"Register New Account",btn_backgroundColor,hover_btn_background,click_btn_background,btn_foregroundColor, hover_btn_foregroundColor);
@@ -53,6 +52,8 @@ public final class Main_Menu {
     {  
         setup_comp();
         setup_frame();
+        
+        
     }
     
       
@@ -70,16 +71,16 @@ public final class Main_Menu {
         
         gbc.insets.bottom = 30;     // sets bottom gap between buttons
         gbc.gridx = 0;
-        gbc.gridy = 7;        
+        gbc.gridy = 12;        
         panel_container.add(register_btn,gbc);
         
         
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 13;
         panel_container.add(login_btn,gbc);
                 
         gbc.gridx = 0;
-        gbc.gridy = 9;
+        gbc.gridy = 14;
         panel_container.add(exit_btn,gbc);
         
     }

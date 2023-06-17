@@ -1,13 +1,8 @@
 
 package com.mycompany.banking_system;
 
-import GUI.Receipt;
-import Objects.Account;
-import javax.swing.JFrame;
-import GUI.Main_Menu;
-import GUI.Transaction; 
 
-import Objects.FileHandling;
+import GUI.Main_Menu;
 
 public class Banking_System {
 

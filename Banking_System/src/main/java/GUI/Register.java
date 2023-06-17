@@ -11,6 +11,7 @@ import UI_Components.RePinField;
 import UI_Components.RoundLabel;
 import UI_Components.SubmitButton;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,10 +26,7 @@ import javax.swing.JPanel;
  */
 public final class Register extends JFrame{
     
-    //Chekcers
-    Boolean isSamePIN = false;
-    Boolean isvalidDeposit = false;
-    
+  
     // Containers
     JFrame frame = new JFrame();    
     JPanel panel_container = new JPanel();
@@ -37,15 +35,10 @@ public final class Register extends JFrame{
     Color title_backgroundColor = new Color(232,199,102);
     Color title_foregroundColor = new Color(0,0,0);
     
-    Color btn_backgroundColor = new Color(51,97,172);
-    Color hover_btn_backgroundColor = new Color(22,47,101);
-    Color click_btn_backgroundColor = new Color(51,97,172);
-    
-    Color btn_foregroundColor = new Color(255,255,255);
-    Color hover_btn_foregroundColor = new Color(255,255,255);
+ 
     
     // Title Label
-    RoundLabel title_label = new RoundLabel("Account Registration", title_backgroundColor, title_foregroundColor);
+    RoundLabel title_label = new RoundLabel("  Account Registration  ", title_backgroundColor, title_foregroundColor);
     
     // Text Fields
     NameField name_field = new NameField(frame,"Name",20);
@@ -54,9 +47,9 @@ public final class Register extends JFrame{
     PinField pin_field = new PinField(frame,"4-digit PIN",4);
     RePinField repin_field = new RePinField(frame,pin_field,"Re-enter 4-digit PIN",4);
     JLabel ErrorMessage = new JLabel();
-    
+ 
     // Button
-    SubmitButton submit_btn = new SubmitButton(frame, "Continue",btn_backgroundColor,hover_btn_backgroundColor,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
+    SubmitButton submit_btn = new SubmitButton(frame, "Continue");
     
     
     // Layout 
@@ -120,44 +113,56 @@ public final class Register extends JFrame{
         gbc.insets.bottom = 20;
         gbc.gridx = 0;
         gbc.gridy = 13;   
-        gbc.anchor = GridBagConstraints.CENTER; // Alignment
+        
+        ErrorMessage.setFont(new Font("Sans Serif", Font.PLAIN, 34));
+        ErrorMessage.setForeground(new Color(99, 100, 102));
+        
         panel_container.add(ErrorMessage,gbc);
         
-        
+        gbc.gridwidth = 0;
         gbc.gridx = 0;
         gbc.gridy = 14;      
         panel_container.add(submit_btn,gbc);
         submit_btn.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    String PIN = new String(pin_field.getPassword());
-                    String rePIN = new String(repin_field.getPassword());
+                String PIN = new String(pin_field.getPassword());
+                String rePIN = new String(repin_field.getPassword());
+                
+                if(name_field.getText().isBlank() || !name_field.isValid()){
+                    ErrorMessage.setText("Invalid Name!");
+                    return;
+                }
+                
+                if(bday_field.getText().isBlank() || !bday_field.isValid()){
+                    ErrorMessage.setText("Invalid Birthdate!");
+                    return;
+                }
+                
+                if(!(Double.parseDouble(initial_deposit_field.getText()) >= 10000) ||
+                        initial_deposit_field.getText().isBlank() ||
+                        !bday_field.isValid()){
+                    ErrorMessage.setText("Invalid Initial Deposit!");
+                    return;
+                }
+                
+                if(!PIN.equals(rePIN) || PIN.isBlank() || rePIN.isBlank()
+                        || !pin_field.isPassValid() || !repin_field.isPassValid()){
+                    ErrorMessage.setText("Pin does not match!");
+                    return;
+                }
 
-                    if(!PIN.equals(rePIN)){
-                        ErrorMessage.setText("Pin does not match!");
-                        return;
-                    }
-                    isSamePIN = true;
                     
-                    if(!(Double.parseDouble(initial_deposit_field.getText()) >= 10000)){
-                        ErrorMessage.setText("Invalid Initial Deposit!");
-                        return;
-                    }
-                    
-                    isvalidDeposit = true;
-                            
-                    if(isSamePIN && isvalidDeposit){
-                        Account account = new Account(name_field.getText(), generateAccountNumber(), bday_field.getText(), PIN, "", Double.parseDouble(initial_deposit_field.getText()));
-                        FileHandling filehandler = new FileHandling();
+                Account account = new Account(name_field.getText(), generateAccountNumber(), bday_field.getText(), PIN, "", Double.parseDouble(initial_deposit_field.getText()));
+                FileHandling filehandler = new FileHandling();
                         
-                        filehandler.saveToFile(account);
-                        AccSuccess success = new AccSuccess(frame, account);
-
-                    }else{
-                        return;
-                    }
-                    
+                filehandler.saveToFile(account);
+                AccSuccess success = new AccSuccess(frame, account);
+                
+                frame.setVisible(false);
             }
+                    
+            
         });
         
         

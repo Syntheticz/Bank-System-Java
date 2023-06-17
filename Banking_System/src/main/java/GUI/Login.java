@@ -18,7 +18,6 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -34,15 +33,9 @@ public final class Login {
     Color title_backgroundColor = new Color(232,199,102);
     Color title_foregroundColor = new Color(0,0,0);
     
-    Color btn_backgroundColor = new Color(51,97,172);
-    Color hover_btn_backgroundColor = new Color(22,47,101);
-    Color click_btn_backgroundColor = new Color(51,97,172);
-    
-    Color btn_foregroundColor = new Color(255,255,255);
-    Color hover_btn_foregroundColor = new Color(255,255,255);
     
     // Title Label
-    RoundLabel title_label = new RoundLabel("Log-in Account", title_backgroundColor, title_foregroundColor);
+    RoundLabel title_label = new RoundLabel("  Log-in Account  ", title_backgroundColor, title_foregroundColor);
     JLabel ErrorMessage = new JLabel();
     
     // Text Fields
@@ -51,8 +44,7 @@ public final class Login {
     RePinField repin_field = new RePinField(frame,pin_field,"Re-enter 4-digit PIN",4);
     
     // Button
-    SubmitButton submit_btn = new SubmitButton(frame, "Continue",btn_backgroundColor,hover_btn_backgroundColor
-            ,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
+    SubmitButton submit_btn = new SubmitButton(frame, "Continue");
     
     
     

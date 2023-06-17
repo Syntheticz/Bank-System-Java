@@ -17,7 +17,6 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 /**
@@ -26,7 +25,6 @@ import javax.swing.SwingUtilities;
  */
 public class BdayField extends TextField
 {
-    private boolean isClicked = false;
     public BdayField(JFrame frame, String placeholder, int col) {
         super(frame, placeholder, col);
         
@@ -58,7 +56,17 @@ public class BdayField extends TextField
 
                         // Compare the day of the initially selected date with the day of the new selected date
                         boolean dayChanged = initialSelectedDate.get(Calendar.DAY_OF_MONTH) != newSelectedDate.get(Calendar.DAY_OF_MONTH);
-
+                        
+                        // Check if the selected date is more than 18 years ago
+                        Calendar eighteenYearsAgo = Calendar.getInstance();
+                        eighteenYearsAgo.add(Calendar.YEAR, -18);
+                        boolean isOldEnough = newSelectedDate.before(eighteenYearsAgo);
+                        
+                        if (isOldEnough) {
+                            setValid();
+                        } else {
+                            setInvalid();
+                        }
                         if (dayChanged) {
                             dialog.setVisible(false);
                            

@@ -50,11 +50,8 @@ public final class AccSuccess {
     RoundLabel balance_label = new RoundLabel("Balance:", no_backgroundColor, title_foregroundColor);
     
     //Button
-    ExitBtn exit_btn = new ExitBtn(frame,"Exit",btn_backgroundColor,hover_btn_backgroundColor,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
-    TransactionButton transaction_btn = new TransactionButton(frame, "Proceed to Transaction", btn_backgroundColor, hover_btn_backgroundColor, click_btn_backgroundColor, btn_foregroundColor, hover_btn_foregroundColor);
-
-    //Account acc = new Account();
-    //String name = acc.getName();
+    ExitBtn exit_btn = new ExitBtn(frame," Exit ",btn_backgroundColor,hover_btn_backgroundColor,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
+    TransactionButton transaction_btn = new TransactionButton(frame, " Proceed to Transaction ", btn_backgroundColor, hover_btn_backgroundColor, click_btn_backgroundColor, btn_foregroundColor, hover_btn_foregroundColor);
     
     private Account account;
     
@@ -69,17 +66,15 @@ public final class AccSuccess {
     public void setup_comp()
     {
         Account acc = account;
-//           acc.setName("Philip");
-//           acc.setAccountBalance(69421.69);
-//           acc.setAccountNumber("123456");
-//           acc.setEncryptedAccountBalance("66969696");
-//           acc.setDateOfBirth("12-07-2001");
-//           acc.setPin("1234");
         
-        RoundLabel namelb = new RoundLabel(acc.getName(), title_backgroundColor, title_foregroundColor);
-        RoundLabel accNumlb = new RoundLabel(acc.getAccountNumber(), title_backgroundColor, title_foregroundColor);
-        RoundLabel doblb = new RoundLabel(acc.getDateOfBirth(), title_backgroundColor, title_foregroundColor);
-        RoundLabel balancelb = new RoundLabel(Double.toString(acc.getAccountBalance()), title_backgroundColor, title_foregroundColor);
+        RoundLabel namelb = new RoundLabel("  " + acc.getName() + "  ", title_backgroundColor, title_foregroundColor);
+        RoundLabel accNumlb = new RoundLabel("  " + acc.getAccountNumber() + "  ", title_backgroundColor, title_foregroundColor);
+        RoundLabel doblb = new RoundLabel("  " + acc.getDateOfBirth() + "  ", title_backgroundColor, title_foregroundColor);
+
+        double balance = acc.getAccountBalance();
+        String formatted = String.format("%.2f", balance);
+
+        RoundLabel balancelb = new RoundLabel("  " + formatted + "  ", title_backgroundColor, title_foregroundColor);
 
 
         panel_container.setLayout(layout);
@@ -89,9 +84,11 @@ public final class AccSuccess {
         gbc.insets = new Insets(0,0,100,0);
         
         gbc.gridx = 0;
+        gbc.gridwidth = 3;
         gbc.gridy = 2;
         panel_container.add(title_label,gbc);
         
+        gbc.gridwidth = 1;
         gbc.insets.bottom = 5;
         gbc.insets.top = 5;
         gbc.gridx = 0;
@@ -138,6 +135,8 @@ public final class AccSuccess {
                 transaction.setVisible(true);
                 transaction.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.dispose();
+                
+                frame.setVisible(false);
             }
         });
         
