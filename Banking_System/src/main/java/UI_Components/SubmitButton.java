@@ -4,6 +4,7 @@
  */
 package UI_Components;
 
+import GUI.AccSuccess;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,12 +30,6 @@ public class SubmitButton extends RoundButton
             public void mouseExited(MouseEvent e) {
                 setColorEffect(getDefaultBackgroundColor());
                 setFontColorEffect(getDefaultForegroundColor());
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                setColorEffect(getClickBackgroundColor());
-                
             }
         });
     }

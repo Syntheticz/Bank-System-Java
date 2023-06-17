@@ -13,7 +13,7 @@ import javax.swing.text.PlainDocument;
  *
  * @author Manuel Marin
  */
-public class RePinField extends TextField
+public class RePinField extends PasswordField
 {
     private final int maxLength = 4;
     private final JTextField pinField;

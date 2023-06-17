@@ -4,7 +4,7 @@
  */
 package UI_Components;
 
-import GUI.Login;
+import GUI.Transaction;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,17 +12,12 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Manuel Marin
+ * @author simon
  */
-public class LoginButton extends RoundButton
-{   
+public class TransactionButton extends RoundButton{
     
-    
-    public LoginButton(JFrame rootFrame, String text, Color defaultBackgroundColor, Color hoverBackgroundColor, Color clickBackgroundColor,
-                       Color defaultForegroundColor, Color hoverForegroundColor) {
-        super(rootFrame, text, defaultBackgroundColor, hoverBackgroundColor, clickBackgroundColor, defaultForegroundColor,hoverForegroundColor);
-        
-        
+    public TransactionButton(JFrame rootFrame, String text, Color defaultBackgroundColor, Color hoverBackgroundColor, Color clickBackgroundColor, Color defaultForegroundColor, Color hoverForegroundColor) {
+        super(rootFrame, text, defaultBackgroundColor, hoverBackgroundColor, clickBackgroundColor, defaultForegroundColor, hoverForegroundColor);
         
         addMouseListener(new MouseAdapter() {
             @Override
@@ -39,19 +34,14 @@ public class LoginButton extends RoundButton
             @Override
             public void mouseClicked(MouseEvent e) {
                 setColorEffect(getClickBackgroundColor());
-                Login login = new Login(rootFrame);
+                //Transaction transaction_panel = new Transaction(rootFrame);
                 
-                if (rootFrame.isVisible()) {
-                    rootFrame.setVisible(false);
-                }
+                
+                //if (rootFrame.isVisible()) {
+                //    rootFrame.setVisible(false);
+                //}
             }
         });
-    }
-    
-    
-    
-  
     
 }
-
-
+}

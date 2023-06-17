@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import Objects.Account;
+import Objects.FileHandling;
 import UI_Components.AccNumField;
 import UI_Components.PinField;
 import UI_Components.RePinField;
@@ -14,6 +16,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -40,6 +43,7 @@ public final class Login {
     
     // Title Label
     RoundLabel title_label = new RoundLabel("Log-in Account", title_backgroundColor, title_foregroundColor);
+    JLabel ErrorMessage = new JLabel();
     
     // Text Fields
     AccNumField acc_num_field = new AccNumField(frame, "Account Number",20);
@@ -50,6 +54,8 @@ public final class Login {
     SubmitButton submit_btn = new SubmitButton(frame, "Continue",btn_backgroundColor,hover_btn_backgroundColor
             ,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
     
+    
+    
     // Layout 
     GridBagLayout layout = new GridBagLayout();
     
@@ -57,10 +63,10 @@ public final class Login {
     GridBagConstraints gbc = new GridBagConstraints();
     
     
-    public Login()
+    public Login(JFrame rootFrame)
     {
         setup_comp();
-        setup_frame();
+        setup_frame(rootFrame);
     }
     
     public void setup_comp() 
@@ -69,7 +75,7 @@ public final class Login {
         panel_container.setBackground(new Color(231,230,221));
         
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10,10,10,10);
+        gbc.insets = new Insets(10,0,10,0);
         
         gbc.gridx = 0;
         gbc.gridy = 7;      
@@ -88,18 +94,52 @@ public final class Login {
         gbc.gridx = 0;
         gbc.gridy = 10;      
         panel_container.add(repin_field,gbc);
-                
+         
         gbc.gridx = 0;
         gbc.gridy = 11;      
+        panel_container.add(ErrorMessage,gbc);
+        ErrorMessage.setText("");
+        
+        gbc.gridx = 0;
+        gbc.gridy = 12;      
         panel_container.add(submit_btn,gbc);
+        submit_btn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FileHandling filehandler = new FileHandling();                   
+                String PIN = new String(pin_field.getPassword());
+                String rePIN = new String(repin_field.getPassword());
+                Account account = filehandler.fetchAccount(acc_num_field.getText());
+                
+                if(account == null){
+                    ErrorMessage.setText("Accont not found!");
+                    return;
+                }
+            
+                if(!PIN.equals(rePIN)){
+                    ErrorMessage.setText("PIN does not match!");
+                    return;
+                }
+                
+                Transaction transaction = new Transaction(account);
+                transaction.setVisible(true);
+                transaction.setDefaultCloseOperation(3);
+                frame.dispose();
+            }
+        });
+        
                
     }
     
-    public void setup_frame()
+    public void setup_frame(JFrame rootFrame)
     {
         frame.add(panel_container);
+        
+        frame.setSize(rootFrame.getSize());
+        frame.setLocation(rootFrame.getLocation());
+        
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
+        //frame.pack();
         frame.setVisible(true);
     }
     

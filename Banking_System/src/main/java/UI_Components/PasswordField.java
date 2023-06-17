@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.text.AttributeSet;
@@ -20,14 +21,14 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.PlainDocument;
 
-public class TextField extends JTextField {
+public class PasswordField extends JPasswordField {
     
     private final String placeholder;
     private final int column;
     private int maxLength;
   
     
-    public TextField(JFrame frame, String placeholder, int col) {
+    public PasswordField(JFrame frame, String placeholder, int col) {
         this.placeholder = placeholder;
         this.column = col;
         setColumns(column);
@@ -37,7 +38,6 @@ public class TextField extends JTextField {
         doc.setDocumentFilter(new Filter());
     }
     
-    //public void setDisabled() { this.setEnabled(false); }
     public void setValid() { this.setBorder(new LineBorder(Color.GREEN)); } 
     public void setInvalid() { this.setBorder(new LineBorder(Color.RED)); } 
     
