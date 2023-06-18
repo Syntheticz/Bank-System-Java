@@ -10,11 +10,10 @@ package UI_Components;
  */
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 public class RoundLabel extends JLabel 
 {
-    private final int radius = 30;
+    private final int radius = 20;
     private final Color backgroundColor;
     private final Color foregroundColor;
     private final Font font = new Font("Sans Serif",Font.PLAIN,36);

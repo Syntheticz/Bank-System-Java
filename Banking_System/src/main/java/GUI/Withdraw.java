@@ -12,7 +12,10 @@ package GUI;
 import Objects.Account;
 import Objects.FileHandling;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
+import javax.swing.JFrame;
 
 
 
@@ -25,7 +28,19 @@ public class Withdraw extends javax.swing.JFrame {
     
     public Withdraw(Account account) {
         this.account = account;
+        
         initComponents();
+        
+        this.setSize(1440,1024);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - this.getWidth()) / 2;
+        int centerY = (screenSize.height - this.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        this.setLocation(centerX, centerY);
     }
     
     public Withdraw(){
@@ -42,23 +57,73 @@ public class Withdraw extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        balance = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        errorMessage1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        balance = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         amountToWithdrawField = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         pinLabel = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         pinField = new javax.swing.JPasswordField();
-        submitButton = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         errorMessage = new javax.swing.JLabel();
-        backToTransaction = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        submitButton = new UI_Components.SubmitButton(null, "Submit");
+        ;
+        jLabel27 = new javax.swing.JLabel();
+        backToTransaction = new UI_Components.BackButton(null, "Back To Transaction Menu");
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Withdraw");
         setSize(new java.awt.Dimension(1440, 1024));
 
         jPanel1.setBackground(new java.awt.Color(231, 230, 221));
+        jPanel1.setLayout(new java.awt.GridLayout(8, 5));
+        jPanel1.add(jLabel4);
+        jPanel1.add(jLabel5);
+        jPanel1.add(jLabel1);
+        jPanel1.add(jLabel6);
+        jPanel1.add(jLabel7);
+        jPanel1.add(jLabel8);
+        jPanel1.add(jLabel9);
 
-        balance.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        errorMessage1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        errorMessage1.setForeground(new java.awt.Color(232, 199, 102));
+        errorMessage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMessage1.setText("Withdraw");
+        errorMessage.setText("");
+        jPanel1.add(errorMessage1);
+        jPanel1.add(jLabel11);
+        jPanel1.add(jLabel12);
+        jPanel1.add(jLabel13);
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel2.setText("Current Balance:");
+        jPanel1.add(jLabel2);
+        jPanel1.add(jLabel14);
+
+        balance.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         balance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         balance.setText(" 69420.00");
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -74,14 +139,16 @@ public class Withdraw extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        jPanel1.add(balance);
+        jPanel1.add(jLabel15);
+        jPanel1.add(jLabel16);
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel2.setText("Current Balance:");
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel3.setText("Enter Amount to Withdaw:");
+        jPanel1.add(jLabel3);
+        jPanel1.add(jLabel17);
 
-        amountToWithdrawField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        amountToWithdrawField.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         amountToWithdrawField.setForeground(new java.awt.Color(99, 100, 102));
         amountToWithdrawField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         UI_Components.amountValidate validator = new UI_Components.amountValidate();
@@ -91,101 +158,69 @@ public class Withdraw extends javax.swing.JFrame {
                 amountToWithdrawFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(amountToWithdrawField);
+        jPanel1.add(jLabel18);
+        jPanel1.add(jLabel19);
 
-        pinLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        pinLabel.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         pinLabel.setText("Enter PIN:");
         pinLabel.setVisible(false);
+        jPanel1.add(pinLabel);
+        jPanel1.add(jLabel23);
 
         UI_Components.PinValidator pinValidator = new UI_Components.PinValidator();
         pinField.setVisible(false);
         pinValidator.validatePin(pinField);
-        pinField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        pinField.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         pinField.setForeground(new java.awt.Color(99, 100, 102));
+        jPanel1.add(pinField);
+        jPanel1.add(jLabel20);
+        jPanel1.add(jLabel21);
+        jPanel1.add(jLabel22);
 
+        errorMessage.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        errorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMessage.setText("Error");
+        errorMessage.setText("");
+        jPanel1.add(errorMessage);
+        jPanel1.add(jLabel24);
+        jPanel1.add(jLabel25);
+        jPanel1.add(jLabel26);
+
+        submitButton.setBackground(new java.awt.Color(51, 97, 172));
+        submitButton.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        submitButton.setForeground(java.awt.Color.white);
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(submitButton);
+        jPanel1.add(jLabel27);
 
-        errorMessage.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        errorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorMessage.setText("Error");
-        errorMessage.setText("");
-
+        backToTransaction.setBackground(new java.awt.Color(93, 93, 93));
+        backToTransaction.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        backToTransaction.setForeground(java.awt.Color.white);
         backToTransaction.setText("Back");
         backToTransaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backToTransactionActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(498, 498, 498)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(443, 443, 443)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(pinLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(amountToWithdrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(55, 55, 55)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backToTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(703, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backToTransaction)
-                .addGap(151, 151, 151)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(amountToWithdrawField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pinLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 601, Short.MAX_VALUE)
-                .addComponent(errorMessage)
-                .addGap(18, 18, 18)
-                .addComponent(submitButton)
-                .addGap(76, 76, 76))
-        );
+        jPanel1.add(backToTransaction);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
@@ -285,8 +320,33 @@ public class Withdraw extends javax.swing.JFrame {
     private javax.swing.JButton backToTransaction;
     private javax.swing.JLabel balance;
     private javax.swing.JLabel errorMessage;
+    private javax.swing.JLabel errorMessage1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pinField;
     private javax.swing.JLabel pinLabel;

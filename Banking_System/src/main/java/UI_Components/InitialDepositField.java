@@ -4,9 +4,6 @@ package UI_Components;
 
 
 import javax.swing.JFrame;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
 import javax.swing.text.PlainDocument;
 
 /**
@@ -15,7 +12,7 @@ import javax.swing.text.PlainDocument;
  */
 public class InitialDepositField extends TextField
 {
-    private final int maxLength = 15;
+    private final int maxLength = 8;
     
     public InitialDepositField(JFrame frame, String placeholder, int col) 
     {
@@ -30,7 +27,7 @@ public class InitialDepositField extends TextField
         @Override
         protected boolean test(String text) {
             try {
-                int value = Integer.parseInt(text);
+                double value = Double.parseDouble(text);
                 if (value >= 10000) {
                     setValid(); 
                 } else setInvalid();
