@@ -208,8 +208,8 @@ public class Deposit extends javax.swing.JFrame {
                     account.deposit(amount);
                     
                     Receipt receipt = new Receipt(account, "Deposit", amountToWithdrawField.getText());
-                    receipt.setVisible(true);
-                    receipt.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    Loading loading = new Loading(receipt);
+                    loading.setVisible(true);
                     this.dispose();
                     
                 }else{

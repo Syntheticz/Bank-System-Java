@@ -4,6 +4,7 @@
  */
 package UI_Components;
 
+import Objects.FileHandling;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,6 +36,8 @@ public class ExitBtn extends RoundButton
             @Override
             public void mouseClicked(MouseEvent e) {
                 setColorEffect(getClickBackgroundColor());
+                FileHandling filehandler = new FileHandling();
+                filehandler.generateMonthlyReportForClients();
                 System.exit(0);
             }
         });

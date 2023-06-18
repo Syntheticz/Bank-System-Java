@@ -236,8 +236,8 @@ public class Transfer extends javax.swing.JFrame {
                     account.transfer(receiver, amount);
                     
                     Receipt receipt = new Receipt(account, "Transfer", amountToTransferField.getText());
-                    receipt.setVisible(true);
-                    receipt.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    Loading loading = new Loading(receipt);
+                    loading.setVisible(true);
                     this.dispose();
                 }else{
         

@@ -213,8 +213,8 @@ public class Withdraw extends javax.swing.JFrame {
                     account.withdraw(amount);
                     
                     Receipt receipt = new Receipt(account, "Withdraw", amountToWithdrawField.getText());
-                    receipt.setVisible(true);
-                    receipt.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    Loading loading = new Loading(receipt);
+                    loading.setVisible(true);
                     this.dispose();
                     
                     

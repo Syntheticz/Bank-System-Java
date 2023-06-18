@@ -24,6 +24,46 @@ public class TransactionLog {
         this.transactionAmount = transactionAmount;
         this.transactionTimestamp = getDateTime();
     }
+    
+    public TransactionLog(String accountNumber, String transactionType, double transactionAmount, String timeStamp) {
+        this.accountNumber = accountNumber;
+        this.transactionType = transactionType;
+        this.transactionAmount = transactionAmount;
+        this.transactionTimestamp = timeStamp;
+    }
+    
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public double getTransactionAmount() {
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(double transactionAmount) {
+        this.transactionAmount = transactionAmount;
+    }
+
+    public String getTransactionTimestamp() {
+        return transactionTimestamp;
+    }
+
+    public void setTransactionTimestamp(String transactionTimestamp) {
+        this.transactionTimestamp = transactionTimestamp;
+    }
+
 
     public String getDateTime() {
 
@@ -41,12 +81,12 @@ public class TransactionLog {
     public String getLog() {
         return "[" + this.transactionTimestamp + "] " + "Transaction Type: " + this.transactionType + " | Account Number: " + this.accountNumber +
             " | Amount: P" + this.transactionAmount;
-        
     }
    
     
     public void saveLog(){
         FileHandling file = new FileHandling();
         file.saveLog(getLog());
+        file.saveLogForReport(accountNumber, transactionAmount, transactionType, transactionTimestamp);
     }
 }
