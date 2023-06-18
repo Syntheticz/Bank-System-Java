@@ -17,19 +17,17 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class RoundButton extends JButton 
 {
     private final int radius = 30;
-    private final Color defaultBackgroundColor;
-    private final Color hoverBackgroundColor;
-    private final Color clickBackgroundColor;
-    private final Color defaultForegroundColor;
-    private final Color hoverForegroundColor;
+    private Color defaultBackgroundColor = null;
+    private Color hoverBackgroundColor = null;
+    private Color clickBackgroundColor = null;
+    private Color defaultForegroundColor = null;
+    private Color hoverForegroundColor = null;
     
     private Color colorEffect;
     private Color fontColorEffect;
@@ -55,8 +53,15 @@ public class RoundButton extends JButton
         // Setting default color
         this.colorEffect = defaultBackgroundColor;
         this.fontColorEffect = defaultForegroundColor;
-        
-        
+    }   
+    
+    public RoundButton(JFrame rootFrame, String text)
+    {
+        super(text);
+        setFont(font);
+        setFocusPainted(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);        
     }   
     
     // Getters

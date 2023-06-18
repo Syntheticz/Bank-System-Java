@@ -14,6 +14,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -37,9 +38,20 @@ public class TextField extends JTextField {
         doc.setDocumentFilter(new Filter());
     }
     
-    //public void setDisabled() { this.setEnabled(false); }
+   
     public void setValid() { this.setBorder(new LineBorder(Color.GREEN)); } 
     public void setInvalid() { this.setBorder(new LineBorder(Color.RED)); } 
+    
+    public boolean isValid() { 
+        
+        Border border = getBorder();
+        if (border instanceof LineBorder lineBorder) {
+            if (lineBorder.getLineColor().equals(Color.RED)) {
+                return false;
+            }
+        }
+        return true;
+    }
     
     public void setMaxLength(int l) { maxLength = l; }
     
@@ -67,10 +79,12 @@ public class TextField extends JTextField {
             StringBuilder sb = new StringBuilder();
             sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
             sb.insert(offset, string);
-            
+           
             if (test(sb.toString())) {
+               
                 super.insertString(fb, offset, string, attr);
             }
+           
         }
 
         @Override
@@ -79,18 +93,26 @@ public class TextField extends JTextField {
             StringBuilder sb = new StringBuilder();
             sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
             sb.replace(offset, offset + length, text);
-
+             
             if (test(sb.toString())) {
+               
                 super.replace(fb, offset, length, text, attrs);
             }
         }
         
+        @Override
+        public void remove(DocumentFilter.FilterBypass fb, int offset, int length) throws BadLocationException {
+            StringBuilder sb = new StringBuilder();
+            sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+            sb.delete(offset, offset + length);
+
+            if (test(sb.toString())) {
+                super.remove(fb, offset, length);
+            }
+        }
+
         protected boolean test(String text) {
-            
             return true;
         }
-        
-     
-    
     }
 }

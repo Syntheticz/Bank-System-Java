@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
 /**
@@ -12,8 +9,10 @@ package GUI;
 import Objects.Account;
 import Objects.FileHandling;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
-
+import javax.swing.JFrame;
 
 
 public class Transfer extends javax.swing.JFrame {
@@ -25,7 +24,20 @@ public class Transfer extends javax.swing.JFrame {
     
     public Transfer(Account account) {
         this.account = account;
+        
         initComponents();
+        
+        
+        this.setSize(1440,1024);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - this.getWidth()) / 2;
+        int centerY = (screenSize.height - this.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        this.setLocation(centerX, centerY);
     }
     
     public Transfer(){
@@ -41,29 +53,80 @@ public class Transfer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backToTransaction = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        balance = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
+        jLabel47 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        errorMessage1 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        balance = new Objects.RoundLabel("test", new Color(232, 199, 102), Color.white);
         jLabel3 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        amountToTransferField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
         accountNumberField = new javax.swing.JTextField();
         pinLabel = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
         pinField = new javax.swing.JPasswordField();
-        submitButton = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
+        jLabel42 = new javax.swing.JLabel();
         errorMessage = new javax.swing.JLabel();
-        backToTransaction = new Objects.RoundButton("", new Color(231, 230, 221), new Color(22, 47, 101), new Color(51, 97, 172), Color.BLACK, new Color(231, 230, 221), new Color(231, 230, 221));
-        jLabel4 = new javax.swing.JLabel();
-        amountToTransferField = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
+        submitbtn = new UI_Components.SubmitButton(null, "Submit")
+        ;
+        jLabel45 = new javax.swing.JLabel();
+        backbtn = new UI_Components.BackButton(null, "Back To Transaction Menu")
+ ;
+
+        backToTransaction.setBackground(new java.awt.Color(51, 97, 172));
+        backToTransaction.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        backToTransaction.setForeground(java.awt.Color.white);
+        backToTransaction.setText("Back");
+        backToTransaction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToTransactionActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Deposit");
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(231, 230, 221));
         setPreferredSize(new java.awt.Dimension(1440, 1024));
         setSize(new java.awt.Dimension(1440, 1024));
 
         jPanel1.setBackground(new java.awt.Color(231, 230, 221));
+        jPanel1.setLayout(new java.awt.GridLayout(9, 3));
+        jPanel1.add(jLabel47);
+        jPanel1.add(jLabel49);
+        jPanel1.add(jLabel50);
+        jPanel1.add(jLabel46);
 
-        balance.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        errorMessage1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        errorMessage1.setForeground(new java.awt.Color(232, 199, 102));
+        errorMessage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMessage1.setText("Transfer");
+        errorMessage.setText("");
+        jPanel1.add(errorMessage1);
+        jPanel1.add(jLabel48);
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Current Balance:");
+        jPanel1.add(jLabel2);
+        jPanel1.add(jLabel41);
+
+        balance.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         balance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         balance.setText(" 69420.00");
+        balance.setVerifyInputWhenFocusTarget(false);
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         String formattedValue = decimalFormat.format(account.getAccountBalance());
 
@@ -77,55 +140,15 @@ public class Transfer extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        jPanel1.add(balance);
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel2.setText("Current Balance:");
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Enter Receivers Account No. :");
+        jPanel1.add(jLabel3);
+        jPanel1.add(jLabel43);
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel3.setText("Enter Receivers Account No.:");
-
-        accountNumberField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        accountNumberField.setForeground(new java.awt.Color(99, 100, 102));
-        accountNumberField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        accountNumberField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accountNumberFieldActionPerformed(evt);
-            }
-        });
-
-        pinLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        pinLabel.setText("Enter PIN:");
-        pinLabel.setVisible(false);
-
-        UI_Components.PinValidator pinValidator = new UI_Components.PinValidator();
-        pinField.setVisible(false);
-        pinValidator.validatePin(pinField);
-        pinField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        pinField.setForeground(new java.awt.Color(99, 100, 102));
-
-        submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
-
-        errorMessage.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        errorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorMessage.setText("Error");
-        errorMessage.setText("");
-
-        backToTransaction.setText("Back");
-        backToTransaction.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backToTransactionActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel4.setText("Enter Amount to Transfer:");
-
-        amountToTransferField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        amountToTransferField.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         amountToTransferField.setForeground(new java.awt.Color(99, 100, 102));
         amountToTransferField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         UI_Components.amountValidate validator = new UI_Components.amountValidate();
@@ -135,92 +158,118 @@ public class Transfer extends javax.swing.JFrame {
                 amountToTransferFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(amountToTransferField);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backToTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(484, 484, 484)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(pinLabel)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(amountToTransferField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(accountNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(591, 591, 591)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(638, 638, 638))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backToTransaction)
-                .addGap(151, 151, 151)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accountNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(amountToTransferField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pinLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 523, Short.MAX_VALUE)
-                .addComponent(errorMessage)
-                .addGap(18, 18, 18)
-                .addComponent(submitButton)
-                .addGap(76, 76, 76))
-        );
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Enter Amount to Transfer:");
+        jPanel1.add(jLabel4);
+        jPanel1.add(jLabel39);
+
+        accountNumberField.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        accountNumberField.setForeground(new java.awt.Color(99, 100, 102));
+        accountNumberField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        accountNumberField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountNumberFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(accountNumberField);
+
+        pinLabel.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        pinLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pinLabel.setText("Enter PIN:");
+        pinLabel.setVisible(false);
+        jPanel1.add(pinLabel);
+        jPanel1.add(jLabel40);
+
+        UI_Components.PinValidator pinValidator = new UI_Components.PinValidator();
+        pinField.setVisible(false);
+        pinValidator.validatePin(pinField);
+        pinField.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        pinField.setForeground(new java.awt.Color(99, 100, 102));
+        jPanel1.add(pinField);
+        jPanel1.add(jLabel42);
+
+        errorMessage.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        errorMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMessage.setText("Error");
+        errorMessage.setText("");
+        jPanel1.add(errorMessage);
+        jPanel1.add(jLabel44);
+
+        submitbtn.setBackground(new java.awt.Color(51, 97, 172));
+        submitbtn.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        submitbtn.setForeground(java.awt.Color.white);
+        submitbtn.setText("Submit");
+        submitbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                submitbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                submitbtnMouseExited(evt);
+            }
+        });
+        submitbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitbtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(submitbtn);
+        jPanel1.add(jLabel45);
+
+        backbtn.setBackground(new java.awt.Color(93, 93, 93));
+        backbtn.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        backbtn.setForeground(java.awt.Color.white);
+        backbtn.setText("Back");
+        backbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backbtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backbtnMouseExited(evt);
+            }
+        });
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(backbtn);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void balanceAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_balanceAncestorAdded
+    private void backToTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToTransactionActionPerformed
 
-    }//GEN-LAST:event_balanceAncestorAdded
+    }//GEN-LAST:event_backToTransactionActionPerformed
 
-    private void accountNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountNumberFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_accountNumberFieldActionPerformed
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        Transaction transaction = new Transaction(account);
+        transaction.setVisible(true);
+        transaction.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_backbtnActionPerformed
 
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+    private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbtnActionPerformed
         double amount = Double.parseDouble(amountToTransferField.getText());
         FileHandling fileHandler = new FileHandling();
 
         Account receiver = fileHandler.fetchAccount(accountNumberField.getText());
-        
+
         if(receiver == null){
             errorMessage.setText("Account not found!");
             return;
@@ -228,19 +277,19 @@ public class Transfer extends javax.swing.JFrame {
 
         if(isEnteringPin && amount >= 100){
             Account temp = fileHandler.fetchAccount(account.getAccountNumber());
-            
+
             String PIN = new String(pinField.getPassword());
-            
+
             if(temp != null){
                 if(temp.getPin().equals(PIN)){
                     account.transfer(receiver, amount);
-                    
+
                     Receipt receipt = new Receipt(account, "Transfer", amountToTransferField.getText());
                     Loading loading = new Loading(receipt);
                     loading.setVisible(true);
                     this.dispose();
                 }else{
-        
+
                     errorMessage.setText("Pin did not match!");
                 }
             }else{
@@ -248,27 +297,59 @@ public class Transfer extends javax.swing.JFrame {
 
             }
         }
- 
+
         if(amount < 100){
             errorMessage.setText("Amount is less than 100!");
             return;
         }
-        
+
         pinLabel.setVisible(true);
         pinField.setVisible(true);
         isEnteringPin = true;
-    }//GEN-LAST:event_submitButtonActionPerformed
+    }//GEN-LAST:event_submitbtnActionPerformed
 
-    private void backToTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToTransactionActionPerformed
-        Transaction transaction = new Transaction(account);
-        transaction.setVisible(true);
-        transaction.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.dispose();
-    }//GEN-LAST:event_backToTransactionActionPerformed
+    private void accountNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountNumberFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountNumberFieldActionPerformed
 
     private void amountToTransferFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountToTransferFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amountToTransferFieldActionPerformed
+
+    private void balanceAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_balanceAncestorAdded
+
+    }//GEN-LAST:event_balanceAncestorAdded
+
+    
+    private void backbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbtnMouseEntered
+        Color hoverForegroundColor = new Color(0,0,0);
+        Color hoverBackgroundColor = new Color(160,162,166);
+        
+        this.setBackground(hoverBackgroundColor);
+        this.setForeground(hoverForegroundColor);
+    }//GEN-LAST:event_backbtnMouseEntered
+
+    private void backbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbtnMouseExited
+        Color defaultForegroundColor = new Color(255,255,255);
+        Color defaultBackgroundColor = new Color(93,93,93);
+        
+        this.setBackground(defaultBackgroundColor);
+        this.setForeground(defaultForegroundColor);
+    }//GEN-LAST:event_backbtnMouseExited
+
+    private void submitbtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitbtnMouseEntered
+        Color hoverForegroundColor = new Color(255,255,255);
+        Color hoverBackgroundColor = new Color(22,47,101);
+        this.setBackground(hoverBackgroundColor);
+        this.setForeground(hoverForegroundColor);
+    }//GEN-LAST:event_submitbtnMouseEntered
+
+    private void submitbtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitbtnMouseExited
+        Color defaultForegroundColor = new Color(255,255,255);
+        Color defaultBackgroundColor = new Color(51,97,172);
+        this.setBackground(defaultBackgroundColor);
+        this.setForeground(defaultForegroundColor);
+    }//GEN-LAST:event_submitbtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -312,14 +393,29 @@ public class Transfer extends javax.swing.JFrame {
     private javax.swing.JTextField accountNumberField;
     private javax.swing.JTextField amountToTransferField;
     private javax.swing.JButton backToTransaction;
+    private javax.swing.JButton backbtn;
     private javax.swing.JLabel balance;
     private javax.swing.JLabel errorMessage;
+    private javax.swing.JLabel errorMessage1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pinField;
     private javax.swing.JLabel pinLabel;
-    private javax.swing.JButton submitButton;
+    private javax.swing.JButton submitbtn;
     // End of variables declaration//GEN-END:variables
 }

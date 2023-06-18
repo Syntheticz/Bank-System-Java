@@ -4,9 +4,6 @@ package UI_Components;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
 import javax.swing.text.PlainDocument;
 
 /**
@@ -37,12 +34,10 @@ public class RePinField extends PasswordField
                 if (value == reValue) {
                     setValid();
                 } else setInvalid();
-    
+                return text.length() <= maxLength && text.matches("\\d*");
             } catch (NumberFormatException e) {
-                setInvalid();
+                return false;
             }
-            
-            return text.length() <= maxLength && text.matches("\\d*");
         }
     }
 } 
