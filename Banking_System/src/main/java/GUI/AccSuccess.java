@@ -1,18 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 
 //import com.mycompany.banking_system.Banking_System;
 import UI_Components.RoundLabel;
 import UI_Components.TransactionButton;
 import Objects.Account;
-import UI_Components.ExitBtn;
+import UI_Components.BackButton;
+
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -50,7 +50,7 @@ public final class AccSuccess {
     RoundLabel balance_label = new RoundLabel("Balance:", no_backgroundColor, title_foregroundColor);
     
     //Button
-    ExitBtn exit_btn = new ExitBtn(frame," Exit ",btn_backgroundColor,hover_btn_backgroundColor,click_btn_backgroundColor,btn_foregroundColor, hover_btn_foregroundColor);
+    BackButton exit_btn = new BackButton(frame," Exit ");
     TransactionButton transaction_btn = new TransactionButton(frame, " Proceed to Transaction ", btn_backgroundColor, hover_btn_backgroundColor, click_btn_backgroundColor, btn_foregroundColor, hover_btn_foregroundColor);
     
     private Account account;
@@ -148,10 +148,16 @@ public final class AccSuccess {
     {
         frame.add(panel_container);
         
-        frame.setSize(rootFrame.getSize());
-        frame.setLocation(rootFrame.getLocation());
-       
+        frame.setSize(1440,1024);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - frame.getWidth()) / 2;
+        int centerY = (screenSize.height - frame.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        frame.setLocation(centerX, centerY);
         frame.setVisible(true);
     }
 }

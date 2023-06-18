@@ -1,16 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 import UI_Components.ExitBtn;
 import UI_Components.LoginButton;
 import UI_Components.RegisterButton;
 import UI_Components.RoundLabel;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import javax.swing.*;  
 /**
  *
@@ -51,9 +50,7 @@ public final class Main_Menu {
     public Main_Menu()
     {  
         setup_comp();
-        setup_frame();
-        
-        
+        setup_frame(); 
     }
     
       
@@ -90,6 +87,14 @@ public final class Main_Menu {
         frame.add(panel_container);
         frame.setSize(1440,1024);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - frame.getWidth()) / 2;
+        int centerY = (screenSize.height - frame.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        frame.setLocation(centerX, centerY);
         frame.setVisible(true);
     }
             

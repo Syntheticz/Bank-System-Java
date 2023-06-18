@@ -43,7 +43,9 @@ public class BdayField extends TextField
                 dialog.pack();
 
                 Point dialogPosition = SwingUtilities.convertPoint(BdayField.this, 0, getHeight(), getParent());
-                dialog.setLocation(dialogPosition.x - dialog.getWidth() + 222, dialogPosition.y + 30);
+                int dialogX = BdayField.this.getLocation().x;
+                int dialogY = BdayField.this.getLocation().y + BdayField.this.getHeight();
+                dialog.setLocation(dialogX, dialogY);
                 dialog.setVisible(true);
 
                 // Keep track of the initially selected day

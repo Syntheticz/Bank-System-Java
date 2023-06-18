@@ -7,7 +7,10 @@ import Objects.Account;
 import Objects.FileHandling;
 import Objects.TransactionLog;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
+import javax.swing.JFrame;
 /**
  *
  * @author philip
@@ -26,8 +29,21 @@ public class Receipt extends javax.swing.JFrame {
         this.operationTypeValue = operationTypeValue;
         this.issuedAmountValue = issuedAmountValue;
         
+        Loading load = new Loading();   //loading
+        
         log = new TransactionLog();
         initComponents();
+        
+        this.setSize(1440,1024);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - this.getWidth()) / 2;
+        int centerY = (screenSize.height - this.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        this.setLocation(centerX, centerY);
     }
     
     
@@ -102,7 +118,8 @@ public class Receipt extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rceipt");
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1440, 1024));
+        setSize(new java.awt.Dimension(1440, 1024));
 
         jPanel1.setBackground(new java.awt.Color(231, 230, 221));
         jPanel1.setForeground(new java.awt.Color(231, 230, 221));
@@ -245,7 +262,7 @@ public class Receipt extends javax.swing.JFrame {
         backToTransactionButton.setBackground(new java.awt.Color(51, 97, 172));
         backToTransactionButton.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
         backToTransactionButton.setForeground(java.awt.Color.white);
-        backToTransactionButton.setText("Back To Transaction Menu");
+        backToTransactionButton.setText("Back");
         backToTransactionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backToTransactionButtonActionPerformed(evt);
@@ -270,9 +287,7 @@ public class Receipt extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1440, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -11,10 +11,12 @@ import UI_Components.RePinField;
 import UI_Components.RoundLabel;
 import UI_Components.SubmitButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -174,10 +176,16 @@ public final class Register extends JFrame{
     {
         frame.add(panel_container);
         
-        frame.setSize(rootFrame.getSize());
-        frame.setLocation(rootFrame.getLocation());
-       
+        frame.setSize(1440,1024);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - frame.getWidth()) / 2;
+        int centerY = (screenSize.height - frame.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        frame.setLocation(centerX, centerY);
         frame.setVisible(true);
     }
     

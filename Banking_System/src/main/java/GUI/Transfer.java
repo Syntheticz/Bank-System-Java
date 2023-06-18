@@ -9,7 +9,10 @@ package GUI;
 import Objects.Account;
 import Objects.FileHandling;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
+import javax.swing.JFrame;
 
 
 public class Transfer extends javax.swing.JFrame {
@@ -23,8 +26,18 @@ public class Transfer extends javax.swing.JFrame {
         this.account = account;
         
         initComponents();
-        pinLabel.setVisible(true);
-        pinField.setVisible(true);
+        
+        
+        this.setSize(1440,1024);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - this.getWidth()) / 2;
+        int centerY = (screenSize.height - this.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        this.setLocation(centerX, centerY);
     }
     
     public Transfer(){
@@ -208,7 +221,7 @@ public class Transfer extends javax.swing.JFrame {
         backbtn.setBackground(new java.awt.Color(93, 93, 93));
         backbtn.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         backbtn.setForeground(java.awt.Color.white);
-        backbtn.setText("Back To Transaction Menu");
+        backbtn.setText("Back");
         backbtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 backbtnMouseEntered(evt);
@@ -229,15 +242,12 @@ public class Transfer extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
         );
 
         pack();
@@ -293,7 +303,8 @@ public class Transfer extends javax.swing.JFrame {
             return;
         }
 
-
+        pinLabel.setVisible(true);
+        pinField.setVisible(true);
         isEnteringPin = true;
     }//GEN-LAST:event_submitbtnActionPerformed
 

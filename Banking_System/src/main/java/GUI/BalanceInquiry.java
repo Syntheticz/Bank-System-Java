@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 import Objects.Account;
 import Objects.FileHandling;
 import Objects.TransactionLog;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.DecimalFormat;
+import javax.swing.JFrame;
 /**
  *
  * @author philip
@@ -25,6 +25,17 @@ public class BalanceInquiry extends javax.swing.JFrame {
    
         log = new TransactionLog(account.getAccountNumber(), "Balance Inquiry", 0);
         initComponents();
+        
+        this.setSize(1440,1024);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // Calculate the center coordinates of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (screenSize.width - this.getWidth()) / 2;
+        int centerY = (screenSize.height - this.getHeight()) / 2;
+
+        // Set the frame's location to the center coordinates
+        this.setLocation(centerX, centerY);
     }
     
     
@@ -177,7 +188,7 @@ public class BalanceInquiry extends javax.swing.JFrame {
         backToTransactionButton1.setBackground(new java.awt.Color(51, 97, 172));
         backToTransactionButton1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         backToTransactionButton1.setForeground(java.awt.Color.white);
-        backToTransactionButton1.setText("Back to Transaction Menu");
+        backToTransactionButton1.setText("Back");
         backToTransactionButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backToTransactionButton1ActionPerformed(evt);
