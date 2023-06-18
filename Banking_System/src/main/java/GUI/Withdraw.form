@@ -110,7 +110,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Objects.RoundLabel(&quot;test&quot;, new Color(232, 199, 102), Color.white);"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DecimalFormat decimalFormat = new DecimalFormat(&quot;#0.00&quot;);&#xd;&#xa;String formattedValue = decimalFormat.format(account.getAccountBalance());&#xd;&#xa;&#xd;&#xa;balance.setText(&quot;&#x20b1;&quot; + formattedValue);&#xd;&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="balance.setText(&quot;&#x20b1;&quot; + String.valueOf(Math.floor(account.getAccountBalance() * 100) / 100));&#xd;&#xa;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">

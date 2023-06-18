@@ -133,10 +133,7 @@ public class Deposit extends javax.swing.JFrame {
         balance.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         balance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         balance.setText(" 69420.00");
-        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        String formattedValue = decimalFormat.format(account.getAccountBalance());
-
-        balance.setText("₱" + formattedValue);
+        balance.setText("₱" + String.valueOf(Math.floor(account.getAccountBalance() * 100) / 100));
         balance.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 balanceAncestorAdded(evt);
@@ -245,6 +242,7 @@ public class Deposit extends javax.swing.JFrame {
 
     private void amountToWithdrawFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountToWithdrawFieldActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_amountToWithdrawFieldActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed

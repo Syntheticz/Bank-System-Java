@@ -126,10 +126,7 @@ public class Withdraw extends javax.swing.JFrame {
         balance.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         balance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         balance.setText(" 69420.00");
-        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        String formattedValue = decimalFormat.format(account.getAccountBalance());
-
-        balance.setText("₱" + formattedValue);
+        balance.setText("₱" + String.valueOf(Math.floor(account.getAccountBalance() * 100) / 100));
         balance.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 balanceAncestorAdded(evt);
